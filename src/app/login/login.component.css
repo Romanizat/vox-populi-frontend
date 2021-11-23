@@ -1,0 +1,82 @@
+.main-content {
+  background-color: #303035;
+  height: 100%;
+  width: 100%;
+}
+
+.login {
+  text-align: center;
+  margin: 0 auto;
+  width: 30%;
+  border-radius: 10px;
+  border: 2px solid #000000;
+  padding-left: 50px;
+  padding-right: 50px;
+  -webkit-box-shadow: 0px 4px 10px 11px rgba(0, 0, 0, 0.44);
+  box-shadow: 0px 4px 10px 11px rgba(0, 0, 0, 0.44);
+  position: absolute;
+  top: 30%;
+  left: 35%;
+}
+
+.username {
+  width: 80%;
+  color: white;
+}
+
+.password {
+  width: 80%;
+}
+
+.login mat-label {
+  color: white;
+}
+
+.login-btn {
+  margin-bottom: 20px;
+  margin-left: 40%;
+  background-color: #197278 !important;
+  min-width: 120px;
+  width: 120px;
+}
+
+.login-btn:hover {
+  background-color: #125256 !important;
+}
+
+.login-btn span {
+  vertical-align: middle;
+}
+
+#mat-input-1 {
+  color: white;
+}
+
+.mat-form-field-underline {
+  background-color: #ffffff !important;
+}
+
+.material-icons {
+  margin-left: 10px;
+}
+
+@media only screen and (max-width: 800px) {
+
+  .main-content {
+    display: flex;
+    justify-content: center;
+  }
+
+  .login {
+    width: auto;
+    left: auto;
+  }
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-transition: color 9999s ease-out, background-color 9999s ease-out;
+  -webkit-transition-delay: 9999s;
+}
