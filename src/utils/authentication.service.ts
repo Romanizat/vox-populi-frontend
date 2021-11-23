@@ -1,32 +1,25 @@
-import {Injectable} from "@angular/core";
-import {HttpClient} from "@angular/common/http";
-import {environment} from "../environments/environment";
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { environment } from "../environments/environment";
 import jwt_decode from "jwt-decode"
-import {Router} from "@angular/router";
-import {MatSnackBar} from "@angular/material/snack-bar";
+import { Router } from "@angular/router";
+import { MatSnackBar } from "@angular/material/snack-bar";
 
-@Injectable({providedIn: "root"})
+const tokenName: string = 'userToken';
+
+@Injectable({ providedIn: "root" })
 export class AuthenticationService {
-  private userToken: any;
-  private token: string;
 
-  constructor(private http: HttpClient, private router: Router, private snackBar: MatSnackBar) {
-    try {
-      // @ts-ignore
-      this.token = localStorage.getItem("userToken");
-      this.userToken = jwt_decode(this.token);
-    } catch (e) {
-      console.error(e);
-      console.error("Not logged in.");
-    }
-  }
+  constructor(private http: HttpClient, private router: Router, private snackBar: MatSnackBar) { }
 
   get userRoles(): string[] {
-    return this.userToken.roles;
+    let token = jwt_decode(this.userJwtToken);
+    // @ts-ignore
+    return token ? token.roles : [];
   }
 
   get userJwtToken(): string {
-    return this.token;
+    return localStorage.getItem(tokenName)!;
   }
 
   get isLoggedIn(): boolean {
@@ -34,24 +27,18 @@ export class AuthenticationService {
   }
 
   login(username: string, password: string): void {
-    this.http.post(`${environment.apiUrl}/login`, {username, password}, {responseType: "text"}).toPromise().then(token => {
+    this.http.post(`${environment.apiUrl}/login`, { username, password }, { responseType: "text" }).toPromise().then(token => {
       if (token) {
-        this.userToken = jwt_decode(token);
-        this.token = token;
-        localStorage.setItem("userToken", token);
+        localStorage.setItem(tokenName, token);
         this.router.navigate(["profile"]);
       }
     }, error => {
       this.openSnackBar(error.error, "Close");
     });
-
-
   }
 
   logout(): void {
-    this.userToken = undefined;
-    this.token = "";
-    localStorage.removeItem("userToken");
+    localStorage.removeItem(tokenName);
     this.router.navigate([""]);
   }
 
