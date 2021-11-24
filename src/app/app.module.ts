@@ -7,6 +7,9 @@ import {LoginComponent} from "./login/login.component";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {ReactiveFormsModule} from "@angular/forms";
+import {MatSidenavModule} from "@angular/material/sidenav";
+import {MatListModule} from "@angular/material/list";
+import {MatIconModule} from "@angular/material/icon";
 
 const appRoutes: Routes = [
   {path: "", component: LoginComponent}
@@ -22,7 +25,10 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     MatFormFieldModule,
     BrowserAnimationsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatSidenavModule,
+    MatListModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

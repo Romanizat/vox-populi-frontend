@@ -42,16 +42,12 @@ export class AuthenticationService {
     this.router.navigate([""]);
   }
 
-  isCEO(): boolean {
-    return this.userRoles.includes("ROLE_CEO");
+  isAdmin(): boolean {
+    return this.userRoles.includes("ADMIN");
   }
 
-  isScholar(): boolean {
-    return this.userRoles.includes("ROLE_SCHOLAR");
-  }
-
-  isProjectManager(): boolean {
-    return this.userRoles.includes("ROLE_PROJECT_MANAGER");
+  isRegularUser(): boolean {
+    return this.userRoles.includes("REGULAR_USER");
   }
 
   openSnackBar(message: string, action: string): void {

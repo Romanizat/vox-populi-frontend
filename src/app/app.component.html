@@ -1,1 +1,25 @@
-<router-outlet></router-outlet>
+<mat-drawer-container class="navbar-container">
+  <mat-drawer #sidenav [opened]="opened" id="menu" class="side-navbar">
+    <img class="isum-logo" routerLink="/upis-sati" src="../../assets/isumLogo.png">
+    <hr>
+
+    <mat-list class="role-menu-list">
+
+
+      <mat-list-item *ngFor="let menuItem of menuItems" class="role-menu-list-item" mat-line
+                     routerLink="{{menuItem?.path}}">
+        <mat-icon mat-list-icon>{{menuItem?.icon}}</mat-icon>
+        <div>{{menuItem?.title}}</div>
+      </mat-list-item>
+      <div>
+        <hr>
+      </div>
+      <mat-list-item class="role-menu-list-item logout" (click)="logout()" mat-line>
+        <mat-icon mat-list-icon>meeting_room</mat-icon>
+        <div>Logout</div>
+      </mat-list-item>
+
+    </mat-list>
+
+  </mat-drawer>
+</mat-drawer-container>
