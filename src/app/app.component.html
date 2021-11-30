@@ -1,13 +1,13 @@
 <mat-drawer-container class="navbar-container">
-  <mat-drawer #sidenav [opened]="opened" id="menu" class="side-navbar">
-    <!--    <img class="logo" routerLink="/upis-sati" src="../../assets/Logo.png">-->
+  <mat-drawer #sidenav [opened]="opened" id="menu" [mode]="mode" class="side-navbar">
+<!--    <img class="isum-logo" routerLink="/upis-sati" src="../../assets/isumLogo.png">-->
     <hr>
 
     <mat-list class="role-menu-list">
 
 
       <mat-list-item *ngFor="let menuItem of menuItems" class="role-menu-list-item" mat-line
-                     routerLink="{{menuItem?.path}}">
+                     routerLink="{{menuItem?.path}}" (click)="sideNavCloseOnMobile()">
         <mat-icon mat-list-icon>{{menuItem?.icon}}</mat-icon>
         <div>{{menuItem?.title}}</div>
       </mat-list-item>
@@ -22,5 +22,10 @@
     </mat-list>
 
   </mat-drawer>
+  <mat-drawer-content>
+    <button *ngIf="authService.isLoggedIn" (click)="sidenav.toggle()" id="hamburger" mat-icon-button>
+      <mat-icon>menu</mat-icon>
+    </button>
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
 </mat-drawer-container>
-<router-outlet></router-outlet>

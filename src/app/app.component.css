@@ -1,0 +1,58 @@
+
+.side-navbar {
+  background-color: #242429;
+  min-width: 10%;
+}
+
+mat-drawer-content {
+  height: 100vh !important;
+}
+
+.role-menu-list {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+
+.role-menu-list .role-menu-list-item {
+  color: white !important;
+  cursor: pointer;
+  font-size: 20px !important;
+}
+
+.role-menu-list .role-menu-list-item:hover {
+  background-color: #197278;
+  transition: background-color 150ms linear;
+}
+
+.isum-logo {
+  margin-top: 1em;
+  padding-left: 20px;
+}
+
+
+::selection {
+  color: white;
+  background: #197278;
+}
+
+#hamburger {
+  display: none;
+}
+
+@media only screen and (max-width: 600px) {
+
+  #hamburger {
+    display: initial;
+    position: fixed;
+    z-index: 1;
+  }
+
+}
+
+*:focus {
+  border: none;
+  outline: none;
+}
+

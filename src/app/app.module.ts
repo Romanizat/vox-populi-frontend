@@ -15,15 +15,18 @@ import {JwtInterceptor} from "../utils/jwt.interceptor";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
+import { ProfileComponent } from './profile/profile.component';
 
 const appRoutes: Routes = [
-  {path: "", component: LoginComponent}
+  {path: "", component: LoginComponent},
+  {path: "profile", component: ProfileComponent, /*canActivate:*/}
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
