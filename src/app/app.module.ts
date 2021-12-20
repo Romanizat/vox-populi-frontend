@@ -15,18 +15,23 @@ import {JwtInterceptor} from "../utils/jwt.interceptor";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
-import { ProfileComponent } from './profile/profile.component';
+import {ProfileComponent} from './profile/profile.component';
+import {ViewUsersComponent} from './view-users/view-users.component';
+import {AuthGuard} from "../utils/auth.guard";
+import {AuthGuardAdmin} from "../utils/auth.guard.admin";
 
 const appRoutes: Routes = [
   {path: "", component: LoginComponent},
-  {path: "profile", component: ProfileComponent, /*canActivate:*/}
+  {path: "profile", component: ProfileComponent, canActivate: [AuthGuard]},
+  {path: "users", component: ViewUsersComponent, canActivate: [AuthGuardAdmin]}
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    ProfileComponent
+    ProfileComponent,
+    ViewUsersComponent
   ],
   imports: [
     BrowserModule,
