@@ -1,1 +1,10 @@
-<p>view-users works!</p>
+<div class="display-users" *ngFor="let user of userList">
+  <div class="user">{{user.name}}  {{user.lastName}}  {{user.username}}</div>
+  <mat-icon (click)="toggleUserBanStatus(user.id, true)" *ngIf="!user?.banned"
+            class="material-icons delete-btn" matTooltip="Ban user">block
+  </mat-icon>
+  <mat-icon (click)="toggleUserBanStatus(user.id, false)" *ngIf="user?.banned"
+            class="material-icons enable-btn" matTooltip="Unban user">done
+  </mat-icon>
+</div>
+

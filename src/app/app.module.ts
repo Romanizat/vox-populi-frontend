@@ -19,6 +19,7 @@ import {ProfileComponent} from './profile/profile.component';
 import {ViewUsersComponent} from './view-users/view-users.component';
 import {AuthGuard} from "../utils/auth.guard";
 import {AuthGuardAdmin} from "../utils/auth.guard.admin";
+import {MatTooltipModule} from "@angular/material/tooltip";
 
 const appRoutes: Routes = [
   {path: "", component: LoginComponent},
@@ -46,7 +47,8 @@ const appRoutes: Routes = [
     HttpClientModule,
     MatSnackBarModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    MatTooltipModule
   ],
   providers: [
     {
