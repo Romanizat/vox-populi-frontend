@@ -30,7 +30,7 @@ export class ViewUsersComponent implements OnInit {
     });
   }
 
-  toggleUserBanStatus(userId: number, ban: boolean | undefined) {
+  toggleUserBanStatus(userId: number | undefined, ban: boolean | undefined) {
     this.userService.toggleUserRecordStatus(userId).toPromise().then(() => {
       this.getAllUsers();
       if (ban) {

@@ -17,7 +17,12 @@ export class UserServicesService {
     return this.http.get<IUser[]>(`${environment.apiUrl}/users`, {responseType: "json"});
   }
 
-  toggleUserRecordStatus(userId: number): Observable<IUser> {
+  toggleUserRecordStatus(userId: number | undefined): Observable<IUser> {
     return this.http.put<IUser>(`${environment.apiUrl}/users/${userId}/toggle`, {responseType: "json"});
   }
+
+  save(user: IUser): Observable<IUser> {
+    return this.http.post<IUser>(`${environment.apiUrl}/users`, user, {responseType: "json"});
+  }
+
 }
