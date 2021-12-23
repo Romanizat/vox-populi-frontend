@@ -1,0 +1,33 @@
+<div class="display-users">
+  <table [dataSource]="dataSource" matSort class="mat-elevation-z8" mat-table>
+    <ng-container matColumnDef="name">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header>First Name</th>
+      <td *matCellDef="let event" mat-cell> {{ event?.name }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="date">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header>Date</th>
+      <td *matCellDef="let event" mat-cell> {{event?.date}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="location">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header>Location</th>
+      <td *matCellDef="let event" mat-cell> {{event?.location}}</td>
+    </ng-container>
+
+
+    <!--    <ng-container matColumnDef="banned">-->
+    <!--      <th *matHeaderCellDef mat-header-cell mat-sort-header>Ban</th>-->
+    <!--      <td *matCellDef="let user" mat-cell>-->
+    <!--        <mat-icon (click)="toggleUserBanStatus(user?.id, true)" *ngIf="!user?.banned"-->
+    <!--                  class="material-icons delete-btn" matTooltip="Ban user">block-->
+    <!--        </mat-icon>-->
+    <!--        <mat-icon (click)="toggleUserBanStatus(user?.id, false)" *ngIf="user?.banned"-->
+    <!--                  class="material-icons enable-btn" matTooltip="Unban user">done-->
+    <!--        </mat-icon>-->
+    <!--      </td>-->
+    <!--    </ng-container>-->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>

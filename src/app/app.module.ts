@@ -23,10 +23,12 @@ import {MatTooltipModule} from "@angular/material/tooltip";
 import {MatTabsModule} from "@angular/material/tabs";
 import {MatSortModule} from "@angular/material/sort";
 import {MatTableModule} from "@angular/material/table";
+import { ViewEventsComponent } from './view-events/view-events.component';
 
 const appRoutes: Routes = [
   {path: "", component: LoginComponent},
   {path: "profile", component: ProfileComponent, canActivate: [AuthGuard]},
+  {path: "events", component: ViewEventsComponent, canActivate: [AuthGuard]},
   {path: "users", component: ViewUsersComponent, canActivate: [AuthGuardAdmin]}
 ];
 
@@ -35,7 +37,8 @@ const appRoutes: Routes = [
     AppComponent,
     LoginComponent,
     ProfileComponent,
-    ViewUsersComponent
+    ViewUsersComponent,
+    ViewEventsComponent
   ],
   imports: [
     BrowserModule,
