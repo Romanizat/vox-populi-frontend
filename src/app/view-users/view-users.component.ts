@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {IUser} from "../../@types/User";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {UserServicesService} from "../services/user-services.service";
+import {MatTableDataSource} from "@angular/material/table";
 
 @Component({
   selector: 'app-view-users',
@@ -10,6 +11,8 @@ import {UserServicesService} from "../services/user-services.service";
 })
 export class ViewUsersComponent implements OnInit {
   userList: IUser[] = [];
+  dataSource = new MatTableDataSource<IUser>([]);
+  displayedColumns: string[] = ["name", "lastName", "username", "banned"];
 
   constructor(private snackBar: MatSnackBar, private userService: UserServicesService) {
   }
@@ -27,6 +30,7 @@ export class ViewUsersComponent implements OnInit {
   getAllUsers(): void {
     this.userService.getAllUsers().toPromise().then(data => {
       this.userList = data;
+      this.dataSource.data = this.userList;
     });
   }
 

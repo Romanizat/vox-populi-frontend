@@ -21,6 +21,8 @@ import {AuthGuard} from "../utils/auth.guard";
 import {AuthGuardAdmin} from "../utils/auth.guard.admin";
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {MatTabsModule} from "@angular/material/tabs";
+import {MatSortModule} from "@angular/material/sort";
+import {MatTableModule} from "@angular/material/table";
 
 const appRoutes: Routes = [
   {path: "", component: LoginComponent},
@@ -50,7 +52,9 @@ const appRoutes: Routes = [
     MatInputModule,
     MatButtonModule,
     MatTooltipModule,
-    MatTabsModule
+    MatTabsModule,
+    MatSortModule,
+    MatTableModule
   ],
   providers: [
     {

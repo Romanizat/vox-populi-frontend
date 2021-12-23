@@ -1,10 +1,32 @@
-<div class="display-users" *ngFor="let user of userList">
-  <div class="user">{{user?.name}}  {{user?.lastName}}  {{user?.username}}</div>
-  <mat-icon (click)="toggleUserBanStatus(user?.id, true)" *ngIf="!user?.banned"
-            class="material-icons delete-btn" matTooltip="Ban user">block
-  </mat-icon>
-  <mat-icon (click)="toggleUserBanStatus(user?.id, false)" *ngIf="user?.banned"
-            class="material-icons enable-btn" matTooltip="Unban user">done
-  </mat-icon>
-</div>
+<div class="display-users">
+  <table [dataSource]="dataSource" matSort class="mat-elevation-z8" mat-table>
+    <ng-container matColumnDef="name">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header>First Name</th>
+      <td *matCellDef="let user" mat-cell> {{ user?.name }}</td>
+    </ng-container>
 
+    <ng-container matColumnDef="lastName">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header>Last Name</th>
+      <td *matCellDef="let user" mat-cell> {{user?.lastName}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="username">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header>Username</th>
+      <td *matCellDef="let user" mat-cell> {{user?.username}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="banned">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header>Ban</th>
+      <td *matCellDef="let user" mat-cell>
+        <mat-icon (click)="toggleUserBanStatus(user?.id, true)" *ngIf="!user?.banned"
+                  class="material-icons delete-btn" matTooltip="Ban user">block
+        </mat-icon>
+        <mat-icon (click)="toggleUserBanStatus(user?.id, false)" *ngIf="user?.banned"
+                  class="material-icons enable-btn" matTooltip="Unban user">done
+        </mat-icon>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>
