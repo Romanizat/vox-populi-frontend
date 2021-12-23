@@ -1,4 +1,4 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, OnInit, ViewChild} from "@angular/core";
 import {FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from "@angular/forms";
 import {ErrorStateMatcher} from "@angular/material/core";
 import {AuthenticationService} from "../../utils/authentication.service";
@@ -6,6 +6,7 @@ import {Router} from "@angular/router";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {IUser} from "../../@types/User";
 import {UserServicesService} from "../services/user-services.service";
+import {MatTabGroup} from "@angular/material/tabs";
 
 @Component({
   selector: "app-login",
@@ -13,6 +14,8 @@ import {UserServicesService} from "../services/user-services.service";
   styleUrls: ["./login.component.css"]
 })
 export class LoginComponent implements OnInit, ErrorStateMatcher {
+  @ViewChild(MatTabGroup) tabGroup!: MatTabGroup;
+
   loginForm = new FormGroup({
     username: new FormControl("", Validators.required),
     password: new FormControl("", Validators.required)
@@ -64,6 +67,7 @@ export class LoginComponent implements OnInit, ErrorStateMatcher {
         banned: false
       }
       this.userService.save(user).toPromise().then(() => {
+        this.tabGroup.selectedIndex = 0;
         this.registerForm.reset();
         this.openSnackBar("Successfully registered!", "Close");
       }, err => {
