@@ -17,6 +17,10 @@ export class UserServicesService {
     return this.http.get<IUser[]>(`${environment.apiUrl}/users`, {responseType: "json"});
   }
 
+  getUserByUsername(username: string): Observable<IUser> {
+    return this.http.get<IUser>(`${environment.apiUrl}/users/user-by-username/${username}`, {responseType: "json"});
+  }
+
   toggleUserRecordStatus(userId: number | undefined): Observable<IUser> {
     return this.http.put<IUser>(`${environment.apiUrl}/users/${userId}/toggle`, {responseType: "json"});
   }
