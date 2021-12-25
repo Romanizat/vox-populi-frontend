@@ -1,7 +1,7 @@
-<div class="display-users">
+<div class="display-events">
   <table [dataSource]="dataSource" matSort class="mat-elevation-z8" mat-table>
     <ng-container matColumnDef="name">
-      <th *matHeaderCellDef mat-header-cell mat-sort-header>First Name</th>
+      <th *matHeaderCellDef mat-header-cell mat-sort-header>Name</th>
       <td *matCellDef="let event" mat-cell> {{ event?.name }}</td>
     </ng-container>
 
@@ -30,4 +30,7 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
+  <div *ngIf="eventList.length===0">
+    <p>You have no events.</p>
+  </div>
 </div>

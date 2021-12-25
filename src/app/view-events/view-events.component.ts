@@ -3,8 +3,9 @@ import {MatTableDataSource} from "@angular/material/table";
 import {IEvent} from "../../@types/Event";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {UserServicesService} from "../services/user-services.service";
-import {LoggedInUserServicesService} from "../services/logged-in-user-services.service";
 import {EventServicesService} from "../services/event-services.service";
+import {AuthenticationService} from "../../utils/authentication.service";
+import {IUser} from "../../@types/User";
 
 @Component({
   selector: 'app-view-events',
@@ -15,20 +16,19 @@ export class ViewEventsComponent implements OnInit {
   eventList: IEvent[] = [];
   dataSource = new MatTableDataSource<IEvent>([]);
   displayedColumns: string[] = ["name", "date", "location"];
-  userId: number | undefined;
+  user: IUser;
+  username: string;
 
   constructor(private snackBar: MatSnackBar,
               private userService: UserServicesService,
               private eventService: EventServicesService,
-              private loggedInUserService: LoggedInUserServicesService) {
+              private authenticationService: AuthenticationService) {
   }
 
   ngOnInit(): void {
-    this.getLoggedInUser().then(user => {
-      console.log(user);
-      this.userId = user.id;
-    });
-    this.getAllEventsForUser();
+    this.username = this.authenticationService.getUsernameFromToken();
+    this.getLoggedInUser();
+    console.log(this.eventList.length)
   }
 
   openSnackBar(message: string, action: string): void {
@@ -37,17 +37,23 @@ export class ViewEventsComponent implements OnInit {
     });
   }
 
-  async getLoggedInUser() {
-    return this.loggedInUserService.getLoggedInUser().toPromise();
+  getLoggedInUser() {
+    this.userService.getUserByUsername(this.username).toPromise().then(data => {
+      this.user = data;
+      this.getAllEventsForUser(this.user.id);
+    }, err => {
+      this.openSnackBar(err.error.message, "Close");
+    });
   }
 
-  getAllEventsForUser() {
-    if (this.userId) {
-      this.eventService.getAllEventsByUserId(this.userId).toPromise().then(data => {
+  getAllEventsForUser(userId: number | undefined) {
+    if (userId) {
+      this.eventService.getAllEventsByUserId(userId).toPromise().then(data => {
         this.eventList = data;
         this.dataSource.data = this.eventList;
+      }, err => {
+        this.openSnackBar(err.error.message, "Close");
       });
     }
-
   }
 }
