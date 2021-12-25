@@ -59,4 +59,9 @@ export class AuthenticationService {
       duration: 2500,
     });
   }
+
+  getUsernameFromToken(): string {
+    // @ts-ignore
+    return jwt_decode(this.userJwtToken).sub;
+  }
 }
