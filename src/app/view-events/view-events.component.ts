@@ -6,6 +6,8 @@ import {UserServicesService} from "../services/user-services.service";
 import {EventServicesService} from "../services/event-services.service";
 import {AuthenticationService} from "../../utils/authentication.service";
 import {IUser} from "../../@types/User";
+import {MatDialog} from "@angular/material/dialog";
+import {CreateEventDialogComponent} from "./create-event-dialog/create-event-dialog.component";
 
 @Component({
   selector: 'app-view-events',
@@ -19,7 +21,8 @@ export class ViewEventsComponent implements OnInit {
   user: IUser;
   username: string;
 
-  constructor(private snackBar: MatSnackBar,
+  constructor(public dialog: MatDialog,
+              private snackBar: MatSnackBar,
               private userService: UserServicesService,
               private eventService: EventServicesService,
               private authenticationService: AuthenticationService) {
@@ -55,5 +58,15 @@ export class ViewEventsComponent implements OnInit {
         this.openSnackBar(err.error.message, "Close");
       });
     }
+  }
+
+  openCreateEventDialog() {
+    const dialogRef = this.dialog.open(CreateEventDialogComponent, {
+      width: "400px",
+      backdropClass: "background"
+    });
+    dialogRef.afterClosed().toPromise().then(() => {
+      this.getAllEventsForUser(this.user.id);
+    });
   }
 }

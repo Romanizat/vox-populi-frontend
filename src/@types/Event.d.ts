@@ -1,5 +1,5 @@
 export class IEvent{
-  id: number;
+  id?: number;
   name: string;
   date: Date;
   location: string;

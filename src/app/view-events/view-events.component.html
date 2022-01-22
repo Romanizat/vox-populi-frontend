@@ -7,7 +7,7 @@
 
     <ng-container matColumnDef="date">
       <th *matHeaderCellDef mat-header-cell mat-sort-header>Date</th>
-      <td *matCellDef="let event" mat-cell> {{event?.date}}</td>
+      <td *matCellDef="let event" mat-cell> {{event?.date | date: "dd/MM/yyyy"}} </td>
     </ng-container>
 
     <ng-container matColumnDef="location">
@@ -32,5 +32,11 @@
   </table>
   <div *ngIf="eventList.length===0">
     <p>You have no events.</p>
+  </div>
+  <br>
+  <div class="create-event-button">
+    <button (click)="openCreateEventDialog()" class="color-secondary add-btn" mat-fab matTooltip="Create new event">
+      <mat-icon>add</mat-icon>
+    </button>
   </div>
 </div>

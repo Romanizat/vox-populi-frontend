@@ -1,0 +1,16 @@
+.add-category {
+  background-color: #125256;
+  float: right;
+}
+
+.add-category:hover {
+  background-color: #0c3639;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.topHeading {
+  font-size: 20px;
+}

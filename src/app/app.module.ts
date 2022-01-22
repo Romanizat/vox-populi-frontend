@@ -23,7 +23,11 @@ import {MatTooltipModule} from "@angular/material/tooltip";
 import {MatTabsModule} from "@angular/material/tabs";
 import {MatSortModule} from "@angular/material/sort";
 import {MatTableModule} from "@angular/material/table";
-import { ViewEventsComponent } from './view-events/view-events.component';
+import {ViewEventsComponent} from './view-events/view-events.component';
+import {CreateEventDialogComponent} from './view-events/create-event-dialog/create-event-dialog.component';
+import {MatDialogModule} from "@angular/material/dialog";
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatNativeDateModule} from "@angular/material/core";
 
 const appRoutes: Routes = [
   {path: "", component: LoginComponent},
@@ -38,7 +42,8 @@ const appRoutes: Routes = [
     LoginComponent,
     ProfileComponent,
     ViewUsersComponent,
-    ViewEventsComponent
+    ViewEventsComponent,
+    CreateEventDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +62,10 @@ const appRoutes: Routes = [
     MatTooltipModule,
     MatTabsModule,
     MatSortModule,
-    MatTableModule
+    MatTableModule,
+    MatDialogModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
   providers: [
     {
