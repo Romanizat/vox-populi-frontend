@@ -28,11 +28,13 @@ import {CreateEventDialogComponent} from './view-events/create-event-dialog/crea
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
+import { EventDetailsComponent } from './view-events/event-details/event-details.component';
 
 const appRoutes: Routes = [
   {path: "", component: LoginComponent},
   {path: "profile", component: ProfileComponent, canActivate: [AuthGuard]},
   {path: "events", component: ViewEventsComponent, canActivate: [AuthGuard]},
+  {path: "event/:id", component: EventDetailsComponent, canActivate: [AuthGuard]},
   {path: "users", component: ViewUsersComponent, canActivate: [AuthGuardAdmin]}
 ];
 
@@ -43,7 +45,8 @@ const appRoutes: Routes = [
     ProfileComponent,
     ViewUsersComponent,
     ViewEventsComponent,
-    CreateEventDialogComponent
+    CreateEventDialogComponent,
+    EventDetailsComponent
   ],
   imports: [
     BrowserModule,

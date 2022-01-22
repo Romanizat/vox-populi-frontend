@@ -8,6 +8,7 @@ import {AuthenticationService} from "../../utils/authentication.service";
 import {IUser} from "../../@types/User";
 import {MatDialog} from "@angular/material/dialog";
 import {CreateEventDialogComponent} from "./create-event-dialog/create-event-dialog.component";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-view-events',
@@ -17,7 +18,7 @@ import {CreateEventDialogComponent} from "./create-event-dialog/create-event-dia
 export class ViewEventsComponent implements OnInit {
   eventList: IEvent[] = [];
   dataSource = new MatTableDataSource<IEvent>([]);
-  displayedColumns: string[] = ["name", "date", "location"];
+  displayedColumns: string[] = ["name", "date", "location", "details"];
   user: IUser;
   username: string;
 
@@ -25,7 +26,8 @@ export class ViewEventsComponent implements OnInit {
               private snackBar: MatSnackBar,
               private userService: UserServicesService,
               private eventService: EventServicesService,
-              private authenticationService: AuthenticationService) {
+              private authenticationService: AuthenticationService,
+              private router: Router) {
   }
 
   ngOnInit(): void {
@@ -68,5 +70,9 @@ export class ViewEventsComponent implements OnInit {
     dialogRef.afterClosed().toPromise().then(() => {
       this.getAllEventsForUser(this.user.id);
     });
+  }
+
+  viewEventDetails(eventId: number) {
+    this.router.navigate(["/event/" + eventId])
   }
 }
