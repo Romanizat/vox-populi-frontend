@@ -34,7 +34,9 @@ export class AuthenticationService {
     }, {responseType: "text"}).toPromise().then(token => {
       if (token) {
         localStorage.setItem(tokenName, token);
-        this.router.navigate(["profile"]);
+        //this.router.navigate(["profile"]);
+        // TODO: Currently commented until implemented
+        this.router.navigate(["events"]);
       }
     }, error => {
       this.openSnackBar(error.error, "Close");
