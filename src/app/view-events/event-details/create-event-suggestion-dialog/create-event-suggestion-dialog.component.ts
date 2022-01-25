@@ -21,8 +21,7 @@ export class CreateEventSuggestionDialogComponent implements OnInit {
     url: new FormControl()
   });
 
-  constructor(private route: ActivatedRoute,
-              private dialogRef: MatDialogRef<CreateEventSuggestionDialogComponent>,
+  constructor(private dialogRef: MatDialogRef<CreateEventSuggestionDialogComponent>,
               @Inject(MAT_DIALOG_DATA) public data: IEvent,
               private snackBar: MatSnackBar,
               private eventSuggestionService: EventSuggestionServicesServices) {

@@ -7,6 +7,8 @@ import {EventSuggestionServicesServices} from "../../services/event-suggestion-s
 import {CreateEventSuggestionDialogComponent} from "./create-event-suggestion-dialog/create-event-suggestion-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
 import {DomSanitizer, SafeResourceUrl, SafeUrl} from "@angular/platform-browser";
+import {CdkDragDrop, moveItemInArray} from "@angular/cdk/drag-drop";
+import {InviteUserToEventDialogComponent} from "./invite-user-to-event-dialog/invite-user-to-event-dialog.component";
 
 @Component({
   selector: 'app-event-details',
@@ -14,14 +16,15 @@ import {DomSanitizer, SafeResourceUrl, SafeUrl} from "@angular/platform-browser"
   styleUrls: ['./event-details.component.css']
 })
 export class EventDetailsComponent implements OnInit {
+  iframe_start: string = '<iframe width="350" height="222" src="https://www.youtube.com/embed/'
+  iframe_end: string = '" frameborder="0" allowfullscreen></iframe>'
   eventId: number;
   event: IEvent;
   eventSuggestionList: IEventSuggestion[] = [];
 
   constructor(public dialog: MatDialog, private route: ActivatedRoute,
               private eventService: EventServicesService,
-              private eventSuggestionService: EventSuggestionServicesServices,
-              public sanitizer: DomSanitizer) {
+              private eventSuggestionService: EventSuggestionServicesServices) {
   }
 
   ngOnInit(): void {
@@ -53,4 +56,17 @@ export class EventDetailsComponent implements OnInit {
     });
   }
 
+  drop(event: CdkDragDrop<IEventSuggestion[]>) {
+    //TODO: implement position saving for index change
+    console.log(event)
+    moveItemInArray(this.eventSuggestionList, event.previousIndex, event.currentIndex);
+  }
+
+  openInviteUserDialog() {
+    this.dialog.open(InviteUserToEventDialogComponent, {
+      width: "400px",
+      backdropClass: "background",
+      data: this.event
+    });
+  }
 }

@@ -31,6 +31,9 @@ import {MatNativeDateModule} from "@angular/material/core";
 import {EventDetailsComponent} from './view-events/event-details/event-details.component';
 import {CreateEventSuggestionDialogComponent} from './view-events/event-details/create-event-suggestion-dialog/create-event-suggestion-dialog.component';
 import {SafePipe} from "../utils/safe-pipe.pipe";
+import {DragDropModule} from "@angular/cdk/drag-drop";
+import { InviteUserToEventDialogComponent } from './view-events/event-details/invite-user-to-event-dialog/invite-user-to-event-dialog.component';
+import {MatSelectModule} from "@angular/material/select";
 
 const appRoutes: Routes = [
   {path: "", component: LoginComponent},
@@ -50,30 +53,33 @@ const appRoutes: Routes = [
     CreateEventDialogComponent,
     EventDetailsComponent,
     CreateEventSuggestionDialogComponent,
-    SafePipe
+    SafePipe,
+    InviteUserToEventDialogComponent
   ],
-  imports: [
-    BrowserModule,
-    RouterModule.forRoot(appRoutes),
-    MatFormFieldModule,
-    BrowserAnimationsModule,
-    ReactiveFormsModule,
-    MatSidenavModule,
-    MatListModule,
-    MatIconModule,
-    BrowserModule,
-    HttpClientModule,
-    MatSnackBarModule,
-    MatInputModule,
-    MatButtonModule,
-    MatTooltipModule,
-    MatTabsModule,
-    MatSortModule,
-    MatTableModule,
-    MatDialogModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-  ],
+    imports: [
+        BrowserModule,
+        RouterModule.forRoot(appRoutes),
+        MatFormFieldModule,
+        BrowserAnimationsModule,
+        ReactiveFormsModule,
+        MatSidenavModule,
+        MatListModule,
+        MatIconModule,
+        BrowserModule,
+        HttpClientModule,
+        MatSnackBarModule,
+        MatInputModule,
+        MatButtonModule,
+        MatTooltipModule,
+        MatTabsModule,
+        MatSortModule,
+        MatTableModule,
+        MatDialogModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        DragDropModule,
+        MatSelectModule,
+    ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
