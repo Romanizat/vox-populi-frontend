@@ -1,4 +1,4 @@
-export class IEvent{
+export interface IEvent{
   id?: number;
   name: string;
   date: Date;

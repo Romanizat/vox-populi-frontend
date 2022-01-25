@@ -72,6 +72,5 @@ export class CreateEventDialogComponent implements OnInit {
     } else {
       this.openSnackBar("Please enter all of the required fields", "Close");
     }
-
   }
 }

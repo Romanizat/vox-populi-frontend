@@ -1,2 +1,17 @@
-<p>event-details works!</p>
-<p>{{eventId}}</p>
+<div class="event-info">
+  <h2>Event: {{event?.name}}</h2>
+  <h2>Date: {{event?.date}}</h2>
+  <h2>Location: {{event?.location}}</h2>
+</div>
+<div class="song-suggestions">
+  <div class="song" *ngFor="let eventSuggestion of eventSuggestionList">
+    <h3 class="song-title">{{eventSuggestion.title}}</h3>
+    <div [innerHTML]="eventSuggestion?.url | safe: 'html'"></div>
+  </div>
+</div>
+<div class="add-song">
+  <button (click)="openEventSuggestionDialog()" class="color-secondary add-btn" mat-fab
+          matTooltip="Add event suggestion">
+    <mat-icon>add</mat-icon>
+  </button>
+</div>

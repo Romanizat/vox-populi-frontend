@@ -28,7 +28,9 @@ import {CreateEventDialogComponent} from './view-events/create-event-dialog/crea
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
-import { EventDetailsComponent } from './view-events/event-details/event-details.component';
+import {EventDetailsComponent} from './view-events/event-details/event-details.component';
+import {CreateEventSuggestionDialogComponent} from './view-events/event-details/create-event-suggestion-dialog/create-event-suggestion-dialog.component';
+import {SafePipe} from "../utils/safe-pipe.pipe";
 
 const appRoutes: Routes = [
   {path: "", component: LoginComponent},
@@ -46,7 +48,9 @@ const appRoutes: Routes = [
     ViewUsersComponent,
     ViewEventsComponent,
     CreateEventDialogComponent,
-    EventDetailsComponent
+    EventDetailsComponent,
+    CreateEventSuggestionDialogComponent,
+    SafePipe
   ],
   imports: [
     BrowserModule,

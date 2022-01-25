@@ -33,7 +33,6 @@ export class ViewEventsComponent implements OnInit {
   ngOnInit(): void {
     this.username = this.authenticationService.getUsernameFromToken();
     this.getLoggedInUser();
-    console.log(this.eventList.length)
   }
 
   openSnackBar(message: string, action: string): void {
