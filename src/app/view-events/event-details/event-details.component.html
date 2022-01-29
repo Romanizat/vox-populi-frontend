@@ -10,12 +10,12 @@
   </button>
 </div>
 <!--TODO create dialog-->
-<!--<div class="view-participants" *ngIf="eventParticipant.organizer">-->
-<!--  <button (click)="openViewParticipantsDialog()" class="color-secondary add-btn" mat-fab-->
-<!--          matTooltip="View event participants">-->
-<!--    <mat-icon>groups</mat-icon>-->
-<!--  </button>-->
-<!--</div>-->
+<div class="view-participants" *ngIf="eventParticipant.organizer">
+  <button (click)="openViewEventParticipantsDialog()" class="color-secondary add-btn" mat-fab
+          matTooltip="View event participants">
+    <mat-icon>groups</mat-icon>
+  </button>
+</div>
 <div class="delete-event" *ngIf="eventParticipant.organizer">
   <button (click)="deleteEvent()" class="color-secondary add-btn" mat-fab
           matTooltip="Delete Event">

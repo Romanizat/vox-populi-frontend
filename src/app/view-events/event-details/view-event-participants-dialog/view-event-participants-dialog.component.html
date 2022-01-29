@@ -1,0 +1,29 @@
+<div class="display-users">
+  <table [dataSource]="dataSource" matSort class="mat-elevation-z8" mat-table>
+    <ng-container matColumnDef="name">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header>First Name</th>
+      <td *matCellDef="let participant" mat-cell> {{ participant.user?.name }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="lastName">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header>Last Name</th>
+      <td *matCellDef="let participant" mat-cell> {{participant.user?.lastName}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="username">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header>Username</th>
+      <td *matCellDef="let participant" mat-cell> {{participant.user?.username}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="remove">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header>Remove</th>
+      <td *matCellDef="let participant" mat-cell>
+        <mat-icon (click)="removeParticipant(participant?.id, participant.user?.username)"
+                  class="material-icons delete-btn" matTooltip="Remove user">delete
+        </mat-icon>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>

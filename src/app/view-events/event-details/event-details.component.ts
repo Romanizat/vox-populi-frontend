@@ -14,6 +14,7 @@ import {AuthenticationService} from "../../../utils/authentication.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {EventParticipantServicesService} from "../../services/event-participant-services.service";
 import {IEventParticipant} from "../../../@types/EventParticipant";
+import {ViewEventParticipantsDialogComponent} from "./view-event-participants-dialog/view-event-participants-dialog.component";
 
 @Component({
   selector: 'app-event-details',
@@ -103,6 +104,14 @@ export class EventDetailsComponent implements OnInit {
       width: "400px",
       backdropClass: "background",
       data: this.event
+    });
+  }
+
+  openViewEventParticipantsDialog() {
+    this.dialog.open(ViewEventParticipantsDialogComponent, {
+      width: "600px",
+      backdropClass: "background",
+      data: this.event.id
     });
   }
 

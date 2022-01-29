@@ -34,6 +34,7 @@ import {SafePipe} from "../utils/safe-pipe.pipe";
 import {DragDropModule} from "@angular/cdk/drag-drop";
 import { InviteUserToEventDialogComponent } from './view-events/event-details/invite-user-to-event-dialog/invite-user-to-event-dialog.component';
 import {MatSelectModule} from "@angular/material/select";
+import { ViewEventParticipantsDialogComponent } from './view-events/event-details/view-event-participants-dialog/view-event-participants-dialog.component';
 
 const appRoutes: Routes = [
   {path: "", component: LoginComponent},
@@ -54,7 +55,8 @@ const appRoutes: Routes = [
     EventDetailsComponent,
     CreateEventSuggestionDialogComponent,
     SafePipe,
-    InviteUserToEventDialogComponent
+    InviteUserToEventDialogComponent,
+    ViewEventParticipantsDialogComponent
   ],
     imports: [
         BrowserModule,
