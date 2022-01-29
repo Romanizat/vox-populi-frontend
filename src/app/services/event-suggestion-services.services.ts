@@ -24,6 +24,10 @@ export class EventSuggestionServicesServices {
   deleteEventSuggestion(eventSuggestionId: number | any): Observable<void> {
     return this.http.delete<void>(`${environment.apiUrl}/event-suggestions/${eventSuggestionId}`, {responseType: "json"});
   }
+
+  updateSuggestionPosition(oldPosition: number, newPosition: number, eventId: number): Observable<void> {
+    return this.http.put<void>(`${environment.apiUrl}/event-suggestions/update-positions/${oldPosition}/${newPosition}/${eventId}`, {responseType: "json"});
+  }
 }
 
 

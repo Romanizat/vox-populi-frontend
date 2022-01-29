@@ -94,9 +94,16 @@ export class EventDetailsComponent implements OnInit {
   }
 
   drop(event: CdkDragDrop<IEventSuggestion[]>) {
-    //TODO: implement position saving for index change
-    console.log(event)
-    moveItemInArray(this.eventSuggestionList, event.previousIndex, event.currentIndex);
+    const oldPosition = event.previousIndex;
+    const newPosition = event.currentIndex;
+    moveItemInArray(this.eventSuggestionList, oldPosition, newPosition);
+    if (oldPosition !== newPosition) {
+      this.eventSuggestionService.updateSuggestionPosition(oldPosition, newPosition, this.eventId).toPromise().then(() => {
+        this.openSnackBar("You have successfully changed the order of the song suggestion!", "Close");
+      }, err => {
+        this.openSnackBar(err.error.message, "Close");
+      });
+    }
   }
 
   openViewEventParticipantsDialog() {
