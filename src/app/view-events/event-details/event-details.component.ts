@@ -6,9 +6,14 @@ import {IEventSuggestion} from "../../../@types/EventSuggestion";
 import {EventSuggestionServicesServices} from "../../services/event-suggestion-services.services";
 import {CreateEventSuggestionDialogComponent} from "./create-event-suggestion-dialog/create-event-suggestion-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
-import {DomSanitizer, SafeResourceUrl, SafeUrl} from "@angular/platform-browser";
 import {CdkDragDrop, moveItemInArray} from "@angular/cdk/drag-drop";
 import {InviteUserToEventDialogComponent} from "./invite-user-to-event-dialog/invite-user-to-event-dialog.component";
+import {IUser} from "../../../@types/User";
+import {UserServicesService} from "../../services/user-services.service";
+import {AuthenticationService} from "../../../utils/authentication.service";
+import {MatSnackBar} from "@angular/material/snack-bar";
+import {EventParticipantServicesService} from "../../services/event-participant-services.service";
+import {IEventParticipant} from "../../../@types/EventParticipant";
 
 @Component({
   selector: 'app-event-details',
@@ -21,16 +26,47 @@ export class EventDetailsComponent implements OnInit {
   eventId: number;
   event: IEvent;
   eventSuggestionList: IEventSuggestion[] = [];
+  user: IUser;
+  eventParticipant: IEventParticipant;
 
   constructor(public dialog: MatDialog, private route: ActivatedRoute,
               private eventService: EventServicesService,
-              private eventSuggestionService: EventSuggestionServicesServices) {
+              private snackBar: MatSnackBar,
+              private eventSuggestionService: EventSuggestionServicesServices,
+              private userService: UserServicesService,
+              private authenticationService: AuthenticationService,
+              private eventParticipantService: EventParticipantServicesService) {
   }
 
   ngOnInit(): void {
     this.eventId = this.route.snapshot.params['id'];
     this.getEventById(this.eventId);
     this.getAllEventSuggestionsForEvent(this.eventId);
+    this.getLoggedInUser(this.authenticationService.getUsernameFromToken());
+  }
+
+  getLoggedInUser(username: string) {
+    this.userService.getUserByUsername(username).toPromise().then(data => {
+      this.user = data;
+      this.getUserParticipant();
+    }, err => {
+      this.openSnackBar(err.error.message, "Close");
+    });
+  }
+
+  getUserParticipant() {
+    this.eventParticipantService.getEventParticipantByEventIdAndUserId(this.eventId, this.user.id).toPromise().then(data => {
+      console.log(data)
+      this.eventParticipant = data;
+    }, err => {
+      this.openSnackBar(err.error.message, "Close");
+    });
+  }
+
+  openSnackBar(message: string, action: string): void {
+    this.snackBar.open(message, action, {
+      duration: 2000,
+    });
   }
 
   getEventById(eventId: number) {

@@ -3,7 +3,7 @@ import {IEvent} from "../../../../@types/Event";
 import {FormControl, FormGroup} from "@angular/forms";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {EventSuggestionServicesService} from "../../../services/event-suggestion-services.service";
+import {EventParticipantServicesService} from "../../../services/event-participant-services.service";
 import {IUser} from "../../../../@types/User";
 import {UserServicesService} from "../../../services/user-services.service";
 import {IEventSuggestion} from "../../../../@types/EventSuggestion";
@@ -24,7 +24,7 @@ export class InviteUserToEventDialogComponent implements OnInit {
   constructor(private dialogRef: MatDialogRef<InviteUserToEventDialogComponent>,
               @Inject(MAT_DIALOG_DATA) public data: IEvent,
               private snackBar: MatSnackBar,
-              private eventParticipantService: EventSuggestionServicesService,
+              private eventParticipantService: EventParticipantServicesService,
               private userService: UserServicesService) {
     this.event = data;
   }

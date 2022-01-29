@@ -7,12 +7,16 @@ import {IEventParticipant} from "../../@types/EventParticipant";
 @Injectable({
   providedIn: 'root'
 })
-export class EventSuggestionServicesService {
+export class EventParticipantServicesService {
 
   constructor(private http: HttpClient) {
   }
 
   addEventParticipant(eventParticipant: IEventParticipant): Observable<IEventParticipant> {
     return this.http.post<IEventParticipant>(`${environment.apiUrl}/event-participants`, eventParticipant, {responseType: "json"});
+  }
+
+  getEventParticipantByEventIdAndUserId(eventId: number, userId: number | any): Observable<IEventParticipant> {
+    return this.http.get<IEventParticipant>(`${environment.apiUrl}/event-participants/${eventId}/${userId}`, {responseType: "json"});
   }
 }
