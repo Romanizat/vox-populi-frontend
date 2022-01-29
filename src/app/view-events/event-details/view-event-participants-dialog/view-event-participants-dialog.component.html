@@ -27,3 +27,11 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
 </div>
+
+
+<div class="invite-user">
+  <button (click)="openInviteUserDialog()" class="color-secondary add-btn" mat-fab
+          matTooltip="Invite user to event">
+    <mat-icon>person</mat-icon>
+  </button>
+</div>

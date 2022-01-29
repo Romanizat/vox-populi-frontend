@@ -13,6 +13,10 @@ export class EventServicesService {
   constructor(private http: HttpClient) {
   }
 
+  getEventsByEventId(eventId: number): Observable<IEvent> {
+    return this.http.get<IEvent>(`${environment.apiUrl}/events/${eventId}`, {responseType: "json"});
+  }
+
   getAllEventsByUserId(userId: number): Observable<IEvent[]> {
     return this.http.get<IEvent[]>(`${environment.apiUrl}/events/all-by-user-id/${userId}`, {responseType: "json"});
   }

@@ -8,6 +8,7 @@ import {IUser} from "../../../../@types/User";
 import {UserServicesService} from "../../../services/user-services.service";
 import {IEventSuggestion} from "../../../../@types/EventSuggestion";
 import {IEventParticipant} from "../../../../@types/EventParticipant";
+import {EventServicesService} from "../../../services/event-services.service";
 
 @Component({
   selector: 'app-invite-user-to-event-dialog',
@@ -17,26 +18,35 @@ import {IEventParticipant} from "../../../../@types/EventParticipant";
 export class InviteUserToEventDialogComponent implements OnInit {
   event: IEvent;
   usersList: IUser[] = [];
+  eventId: number;
   form = new FormGroup({
     user: new FormControl(),
   });
 
   constructor(private dialogRef: MatDialogRef<InviteUserToEventDialogComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: IEvent,
+              @Inject(MAT_DIALOG_DATA) public data: number,
               private snackBar: MatSnackBar,
               private eventParticipantService: EventParticipantServicesService,
-              private userService: UserServicesService) {
-    this.event = data;
+              private userService: UserServicesService,
+              private eventService: EventServicesService) {
+    this.eventId = data;
   }
 
   ngOnInit(): void {
     this.getAllUsers();
+    this.getEventById();
   }
 
   getAllUsers(): void {
     this.userService.getAllUsers().toPromise().then(data => {
       this.usersList = data;
     });
+  }
+
+  getEventById() {
+    this.eventService.getEventsByEventId(this.eventId).toPromise().then(data => {
+      this.event = data;
+    })
   }
 
   openSnackBar(message: string, action: string): void {

@@ -99,14 +99,6 @@ export class EventDetailsComponent implements OnInit {
     moveItemInArray(this.eventSuggestionList, event.previousIndex, event.currentIndex);
   }
 
-  openInviteUserDialog() {
-    this.dialog.open(InviteUserToEventDialogComponent, {
-      width: "400px",
-      backdropClass: "background",
-      data: this.event
-    });
-  }
-
   openViewEventParticipantsDialog() {
     this.dialog.open(ViewEventParticipantsDialogComponent, {
       width: "600px",

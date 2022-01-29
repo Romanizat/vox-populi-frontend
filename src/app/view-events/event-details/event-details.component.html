@@ -9,7 +9,6 @@
     <mat-icon>add</mat-icon>
   </button>
 </div>
-<!--TODO create dialog-->
 <div class="view-participants" *ngIf="eventParticipant.organizer">
   <button (click)="openViewEventParticipantsDialog()" class="color-secondary add-btn" mat-fab
           matTooltip="View event participants">
@@ -22,13 +21,6 @@
     <mat-icon>delete_forever</mat-icon>
   </button>
 </div>
-<!--TODO: Add this invite user to view participants dialog-->
-<!--<div class="invite-user" *ngIf="eventParticipant.organizer">-->
-<!--  <button (click)="openInviteUserDialog()" class="color-secondary add-btn" mat-fab-->
-<!--          matTooltip="Invite user to event">-->
-<!--    <mat-icon>person</mat-icon>-->
-<!--  </button>-->
-<!--</div>-->
 <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
   <div class="example-box" *ngFor="let eventSuggestion of eventSuggestionList" cdkDrag>
     <h3 class="song-title">{{eventSuggestion.title}}</h3>

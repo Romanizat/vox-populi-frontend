@@ -3,7 +3,8 @@ import {MatTableDataSource} from "@angular/material/table";
 import {IEventParticipant} from "../../../../@types/EventParticipant";
 import {EventParticipantServicesService} from "../../../services/event-participant-services.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
+import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog";
+import {InviteUserToEventDialogComponent} from "../invite-user-to-event-dialog/invite-user-to-event-dialog.component";
 
 @Component({
   selector: 'app-view-event-participants',
@@ -15,7 +16,7 @@ export class ViewEventParticipantsDialogComponent implements OnInit {
   displayedColumns: string[] = ["name", "lastName", "username", "remove"];
   eventId: number;
 
-  constructor(private dialogRef: MatDialogRef<ViewEventParticipantsDialogComponent>,
+  constructor(public dialog: MatDialog, private dialogRef: MatDialogRef<ViewEventParticipantsDialogComponent>,
               @Inject(MAT_DIALOG_DATA) public data: number,
               private eventParticipantService: EventParticipantServicesService,
               private snackBar: MatSnackBar) {
@@ -44,6 +45,14 @@ export class ViewEventParticipantsDialogComponent implements OnInit {
       this.getAllParticipants();
     }, err => {
       this.openSnackBar(err.error.message, "Close");
+    });
+  }
+
+  openInviteUserDialog() {
+    this.dialog.open(InviteUserToEventDialogComponent, {
+      width: "400px",
+      backdropClass: "background",
+      data: this.eventId
     });
   }
 }
