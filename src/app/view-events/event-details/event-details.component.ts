@@ -56,7 +56,6 @@ export class EventDetailsComponent implements OnInit {
 
   getUserParticipant() {
     this.eventParticipantService.getEventParticipantByEventIdAndUserId(this.eventId, this.user.id).toPromise().then(data => {
-      console.log(data)
       this.eventParticipant = data;
     }, err => {
       this.openSnackBar(err.error.message, "Close");
@@ -103,6 +102,15 @@ export class EventDetailsComponent implements OnInit {
       width: "400px",
       backdropClass: "background",
       data: this.event
+    });
+  }
+
+  deleteSuggestion(eventSuggestion: IEventSuggestion) {
+    this.eventSuggestionService.deleteEventSuggestion(eventSuggestion.id).toPromise().then(() => {
+      this.openSnackBar("You have deleted the suggestion", "Close");
+      this.getAllEventSuggestionsForEvent(this.eventId);
+    }, err => {
+      this.openSnackBar(err.error.message, "Close");
     });
   }
 }

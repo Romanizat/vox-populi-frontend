@@ -20,6 +20,10 @@ export class EventSuggestionServicesServices {
   createEventSuggestion(eventSuggestion: IEventSuggestion): Observable<IEventSuggestion> {
     return this.http.post<IEventSuggestion>(`${environment.apiUrl}/event-suggestions/`, eventSuggestion, {responseType: "json"});
   }
+
+  deleteEventSuggestion(eventSuggestionId: number | any): Observable<void> {
+    return this.http.delete<void>(`${environment.apiUrl}/event-suggestions/${eventSuggestionId}`, {responseType: "json"});
+  }
 }
 
 

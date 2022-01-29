@@ -20,6 +20,12 @@
 <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
   <div class="example-box" *ngFor="let eventSuggestion of eventSuggestionList" cdkDrag>
     <h3 class="song-title">{{eventSuggestion.title}}</h3>
+    <div class="invite-user" *ngIf="eventParticipant.organizer">
+      <button (click)="deleteSuggestion(eventSuggestion)" class="color-secondary add-btn" mat-fab
+              matTooltip="Delete event suggestion">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
     <div [innerHTML]="iframe_start +  eventSuggestion?.url + iframe_end | safe: 'html'"></div>
   </div>
 </div>
