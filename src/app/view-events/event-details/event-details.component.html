@@ -9,14 +9,26 @@
     <mat-icon>add</mat-icon>
   </button>
 </div>
-<!--TODO: create tab for organizer that will have options to invite and remove users-->
-<div class="invite-user" *ngIf="eventParticipant.organizer">
-  <button (click)="openInviteUserDialog()" class="color-secondary add-btn" mat-fab
-          matTooltip="Invite user to event">
-    <mat-icon>person</mat-icon>
+<!--TODO create dialog-->
+<!--<div class="view-participants" *ngIf="eventParticipant.organizer">-->
+<!--  <button (click)="openViewParticipantsDialog()" class="color-secondary add-btn" mat-fab-->
+<!--          matTooltip="View event participants">-->
+<!--    <mat-icon>groups</mat-icon>-->
+<!--  </button>-->
+<!--</div>-->
+<div class="delete-event" *ngIf="eventParticipant.organizer">
+  <button (click)="deleteEvent()" class="color-secondary add-btn" mat-fab
+          matTooltip="Delete Event">
+    <mat-icon>delete_forever</mat-icon>
   </button>
 </div>
-<!--TODO: add button to delete suggestion only for organizer-->
+<!--TODO: Add this invite user to view participants dialog-->
+<!--<div class="invite-user" *ngIf="eventParticipant.organizer">-->
+<!--  <button (click)="openInviteUserDialog()" class="color-secondary add-btn" mat-fab-->
+<!--          matTooltip="Invite user to event">-->
+<!--    <mat-icon>person</mat-icon>-->
+<!--  </button>-->
+<!--</div>-->
 <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
   <div class="example-box" *ngFor="let eventSuggestion of eventSuggestionList" cdkDrag>
     <h3 class="song-title">{{eventSuggestion.title}}</h3>

@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {IEvent} from "../../../@types/Event";
 import {EventServicesService} from "../../services/event-services.service";
 import {IEventSuggestion} from "../../../@types/EventSuggestion";
@@ -35,7 +35,8 @@ export class EventDetailsComponent implements OnInit {
               private eventSuggestionService: EventSuggestionServicesServices,
               private userService: UserServicesService,
               private authenticationService: AuthenticationService,
-              private eventParticipantService: EventParticipantServicesService) {
+              private eventParticipantService: EventParticipantServicesService,
+              private router: Router) {
   }
 
   ngOnInit(): void {
@@ -109,6 +110,15 @@ export class EventDetailsComponent implements OnInit {
     this.eventSuggestionService.deleteEventSuggestion(eventSuggestion.id).toPromise().then(() => {
       this.openSnackBar("You have deleted the suggestion", "Close");
       this.getAllEventSuggestionsForEvent(this.eventId);
+    }, err => {
+      this.openSnackBar(err.error.message, "Close");
+    });
+  }
+
+  deleteEvent() {
+    this.eventService.deleteEvent(this.eventId).toPromise().then(() => {
+      this.openSnackBar("You have deleted the event", "Close");
+      this.router.navigate(["events"]);
     }, err => {
       this.openSnackBar(err.error.message, "Close");
     });

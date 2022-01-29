@@ -24,4 +24,8 @@ export class EventServicesService {
   getEventByEventId(eventId: number): Observable<IEvent> {
     return this.http.get<IEvent>(`${environment.apiUrl}/events/${eventId}/`, {responseType: "json"});
   }
+
+  deleteEvent(eventId: number | any): Observable<void> {
+    return this.http.delete<void>(`${environment.apiUrl}/events/${eventId}`, {responseType: "json"});
+  }
 }
