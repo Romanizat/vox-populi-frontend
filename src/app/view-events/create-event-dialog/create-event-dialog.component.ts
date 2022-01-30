@@ -37,7 +37,7 @@ export class CreateEventDialogComponent implements OnInit {
 
   openSnackBar(message: string, action: string): void {
     this.snackBar.open(message, action, {
-      duration: 4000,
+      duration: 10000,
     });
   }
 
