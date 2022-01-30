@@ -4,12 +4,12 @@
       <h1 class="topHeading">Create new event</h1>
       <mat-form-field tabindex="3">
         <mat-label>Name</mat-label>
-        <input formControlName="name" matInput required>
+        <input formControlName="name" matInput required id="eventName">
       </mat-form-field>
       <mat-form-field>
         <label>
           <input [matDatepicker]="picker1" formControlName="date" matInput placeholder="Date"
-                 required>
+                 required id="eventDate">
         </label>
         <mat-datepicker-toggle [for]="picker1" matSuffix></mat-datepicker-toggle>
         <mat-datepicker #picker1>
@@ -17,7 +17,7 @@
       </mat-form-field>
       <mat-form-field tabindex="3">
         <mat-label>Location</mat-label>
-        <input formControlName="location" matInput required>
+        <input formControlName="location" matInput required id="eventLocation">
       </mat-form-field>
       <br>
       <button (click)="createEvent()" class="add-category" color="primary" mat-raised-button>Save</button>
