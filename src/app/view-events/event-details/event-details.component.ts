@@ -4,17 +4,20 @@ import {IEvent} from "../../../@types/Event";
 import {EventServicesService} from "../../services/event-services.service";
 import {IEventSuggestion} from "../../../@types/EventSuggestion";
 import {EventSuggestionServicesServices} from "../../services/event-suggestion-services.services";
-import {CreateEventSuggestionDialogComponent} from "./create-event-suggestion-dialog/create-event-suggestion-dialog.component";
-import {MatDialog} from "@angular/material/dialog";
+import {
+  CreateEventSuggestionDialogComponent
+} from "./create-event-suggestion-dialog/create-event-suggestion-dialog.component";
+import {MatLegacyDialog as MatDialog} from "@angular/material/legacy-dialog";
 import {CdkDragDrop, moveItemInArray} from "@angular/cdk/drag-drop";
-import {InviteUserToEventDialogComponent} from "./invite-user-to-event-dialog/invite-user-to-event-dialog.component";
 import {IUser} from "../../../@types/User";
 import {UserServicesService} from "../../services/user-services.service";
 import {AuthenticationService} from "../../../utils/authentication.service";
-import {MatSnackBar} from "@angular/material/snack-bar";
+import {MatLegacySnackBar as MatSnackBar} from "@angular/material/legacy-snack-bar";
 import {EventParticipantServicesService} from "../../services/event-participant-services.service";
 import {IEventParticipant} from "../../../@types/EventParticipant";
-import {ViewEventParticipantsDialogComponent} from "./view-event-participants-dialog/view-event-participants-dialog.component";
+import {
+  ViewEventParticipantsDialogComponent
+} from "./view-event-participants-dialog/view-event-participants-dialog.component";
 
 @Component({
   selector: 'app-event-details',

@@ -1,8 +1,8 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {IEvent} from "../../../../@types/Event";
-import {FormControl, FormGroup} from "@angular/forms";
-import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {MatSnackBar} from "@angular/material/snack-bar";
+import {UntypedFormControl, UntypedFormGroup} from "@angular/forms";
+import {MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA, MatLegacyDialogRef as MatDialogRef} from "@angular/material/legacy-dialog";
+import {MatLegacySnackBar as MatSnackBar} from "@angular/material/legacy-snack-bar";
 import {EventParticipantServicesService} from "../../../services/event-participant-services.service";
 import {IUser} from "../../../../@types/User";
 import {UserServicesService} from "../../../services/user-services.service";
@@ -19,8 +19,8 @@ export class InviteUserToEventDialogComponent implements OnInit {
   event: IEvent;
   usersList: IUser[] = [];
   eventId: number;
-  form = new FormGroup({
-    user: new FormControl(),
+  form = new UntypedFormGroup({
+    user: new UntypedFormControl(),
   });
 
   constructor(private dialogRef: MatDialogRef<InviteUserToEventDialogComponent>,

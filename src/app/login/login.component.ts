@@ -1,12 +1,12 @@
 import {Component, OnInit, ViewChild} from "@angular/core";
-import {FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from "@angular/forms";
+import {UntypedFormControl, UntypedFormGroup, FormGroupDirective, NgForm, Validators} from "@angular/forms";
 import {ErrorStateMatcher} from "@angular/material/core";
 import {AuthenticationService} from "../../utils/authentication.service";
 import {Router} from "@angular/router";
-import {MatSnackBar} from "@angular/material/snack-bar";
+import {MatLegacySnackBar as MatSnackBar} from "@angular/material/legacy-snack-bar";
 import {IUser} from "../../@types/User";
 import {UserServicesService} from "../services/user-services.service";
-import {MatTabGroup} from "@angular/material/tabs";
+import {MatLegacyTabGroup as MatTabGroup} from "@angular/material/legacy-tabs";
 
 @Component({
   selector: "app-login",
@@ -16,16 +16,16 @@ import {MatTabGroup} from "@angular/material/tabs";
 export class LoginComponent implements OnInit, ErrorStateMatcher {
   @ViewChild(MatTabGroup) tabGroup!: MatTabGroup;
 
-  loginForm = new FormGroup({
-    username: new FormControl("", Validators.required),
-    password: new FormControl("", Validators.required)
+  loginForm = new UntypedFormGroup({
+    username: new UntypedFormControl("", Validators.required),
+    password: new UntypedFormControl("", Validators.required)
   });
-  registerForm = new FormGroup({
-    firstName: new FormControl("", Validators.required),
-    lastName: new FormControl("", Validators.required),
-    email: new FormControl("", Validators.required),
-    username: new FormControl("", Validators.required),
-    password: new FormControl("", Validators.required),
+  registerForm = new UntypedFormGroup({
+    firstName: new UntypedFormControl("", Validators.required),
+    lastName: new UntypedFormControl("", Validators.required),
+    email: new UntypedFormControl("", Validators.required),
+    username: new UntypedFormControl("", Validators.required),
+    password: new UntypedFormControl("", Validators.required),
   });
 
   constructor(private router: Router,
@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit, ErrorStateMatcher {
   ngOnInit(): void {
   }
 
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+  isErrorState(control: UntypedFormControl | null, form: FormGroupDirective | NgForm | null): boolean {
     const isSubmitted = form && form.submitted;
     return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
   }

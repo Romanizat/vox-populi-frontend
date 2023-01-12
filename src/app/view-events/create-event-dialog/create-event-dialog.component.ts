@@ -2,11 +2,11 @@ import {Component, OnInit} from '@angular/core';
 import {IUser} from "../../../@types/User";
 import {UserServicesService} from "../../services/user-services.service";
 import {AuthenticationService} from "../../../utils/authentication.service";
-import {MatSnackBar} from "@angular/material/snack-bar";
-import {FormControl, FormGroup} from "@angular/forms";
+import {MatLegacySnackBar as MatSnackBar} from "@angular/material/legacy-snack-bar";
+import {UntypedFormControl, UntypedFormGroup} from "@angular/forms";
 import {IEvent} from "../../../@types/Event";
 import {EventServicesService} from "../../services/event-services.service";
-import {MatDialogRef} from "@angular/material/dialog";
+import {MatLegacyDialogRef as MatDialogRef} from "@angular/material/legacy-dialog";
 import {utcShift} from "../../../utils/dateUtil";
 
 @Component({
@@ -17,10 +17,10 @@ import {utcShift} from "../../../utils/dateUtil";
 export class CreateEventDialogComponent implements OnInit {
   user: IUser;
   username: string;
-  form = new FormGroup({
-    name: new FormControl(),
-    date: new FormControl(),
-    location: new FormControl(),
+  form = new UntypedFormGroup({
+    name: new UntypedFormControl(),
+    date: new UntypedFormControl(),
+    location: new UntypedFormControl(),
   });
 
   constructor(private dialogRef: MatDialogRef<CreateEventDialogComponent>,

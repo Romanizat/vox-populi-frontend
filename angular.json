@@ -104,5 +104,7 @@
       }
     }
   },
-  "defaultProject": "vox-populi"
+  "cli": {
+    "analytics": false
+  }
 }

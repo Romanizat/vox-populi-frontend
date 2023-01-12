@@ -1,12 +1,12 @@
 import {Component, OnInit} from '@angular/core';
-import {MatTableDataSource} from "@angular/material/table";
+import {MatLegacyTableDataSource as MatTableDataSource} from "@angular/material/legacy-table";
 import {IEvent} from "../../@types/Event";
-import {MatSnackBar} from "@angular/material/snack-bar";
+import {MatLegacySnackBar as MatSnackBar} from "@angular/material/legacy-snack-bar";
 import {UserServicesService} from "../services/user-services.service";
 import {EventServicesService} from "../services/event-services.service";
 import {AuthenticationService} from "../../utils/authentication.service";
 import {IUser} from "../../@types/User";
-import {MatDialog} from "@angular/material/dialog";
+import {MatLegacyDialog as MatDialog} from "@angular/material/legacy-dialog";
 import {CreateEventDialogComponent} from "./create-event-dialog/create-event-dialog.component";
 import {Router} from "@angular/router";
 
