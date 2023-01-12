@@ -1,5 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {FormControl, FormGroup} from "@angular/forms";
+import {UntypedFormControl, UntypedFormGroup} from "@angular/forms";
 import {ActivatedRoute} from "@angular/router";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {MatSnackBar} from "@angular/material/snack-bar";
@@ -16,9 +16,9 @@ import {IEvent} from "../../../../@types/Event";
 
 export class CreateEventSuggestionDialogComponent implements OnInit {
   event: IEvent;
-  form = new FormGroup({
-    title: new FormControl(),
-    url: new FormControl()
+  form = new UntypedFormGroup({
+    title: new UntypedFormControl(),
+    url: new UntypedFormControl()
   });
 
   constructor(private dialogRef: MatDialogRef<CreateEventSuggestionDialogComponent>,
