@@ -1,9 +1,9 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {MatTableDataSource} from "@angular/material/table";
+import {MatLegacyTableDataSource as MatTableDataSource} from "@angular/material/legacy-table";
 import {IEventParticipant} from "../../../../@types/EventParticipant";
 import {EventParticipantServicesService} from "../../../services/event-participant-services.service";
-import {MatSnackBar} from "@angular/material/snack-bar";
-import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog";
+import {MatLegacySnackBar as MatSnackBar} from "@angular/material/legacy-snack-bar";
+import {MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA, MatLegacyDialog as MatDialog, MatLegacyDialogRef as MatDialogRef} from "@angular/material/legacy-dialog";
 import {InviteUserToEventDialogComponent} from "../invite-user-to-event-dialog/invite-user-to-event-dialog.component";
 
 @Component({

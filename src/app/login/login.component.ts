@@ -3,10 +3,10 @@ import {UntypedFormControl, UntypedFormGroup, FormGroupDirective, NgForm, Valida
 import {ErrorStateMatcher} from "@angular/material/core";
 import {AuthenticationService} from "../../utils/authentication.service";
 import {Router} from "@angular/router";
-import {MatSnackBar} from "@angular/material/snack-bar";
+import {MatLegacySnackBar as MatSnackBar} from "@angular/material/legacy-snack-bar";
 import {IUser} from "../../@types/User";
 import {UserServicesService} from "../services/user-services.service";
-import {MatTabGroup} from "@angular/material/tabs";
+import {MatLegacyTabGroup as MatTabGroup} from "@angular/material/legacy-tabs";
 
 @Component({
   selector: "app-login",
