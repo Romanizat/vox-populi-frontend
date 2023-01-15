@@ -3,7 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {environment} from "../environments/environment";
 import jwt_decode from "jwt-decode"
 import {Router} from "@angular/router";
-import {MatLegacySnackBar as MatSnackBar} from "@angular/material/legacy-snack-bar";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 const tokenName: string = 'userToken';
 

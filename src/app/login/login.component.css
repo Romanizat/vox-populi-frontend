@@ -2,81 +2,61 @@
   background-color: #303035;
   height: 100%;
   width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mat-mdc-tab:not(.mat-mdc-tab-disabled) .mdc-tab__text-label,
+.mat-mdc-tab-link:not(.mat-mdc-tab-disabled) .mdc-tab__text-label {
+  color: #FFC947;
 }
 
 .login {
-  text-align: center;
-  margin: 0 auto;
-  width: 30%;
-  border-radius: 10px;
-  border: 2px solid #000000;
-  padding-left: 50px;
-  padding-right: 50px;
-  -webkit-box-shadow: 0px 4px 10px 11px rgba(0, 0, 0, 0.44);
-  box-shadow: 0px 4px 10px 11px rgba(0, 0, 0, 0.44);
-  position: absolute;
-  top: 30%;
-  left: 35%;
+  width: clamp(300px, 50%, 700px);
 }
 
-.username {
-  width: 80%;
-  color: white;
+form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem 0;
 }
 
-.password {
-  width: 80%;
+mat-form-field {
+  width: 60%;
+  background: transparent;
 }
 
-.login mat-label {
-  color: white;
+input {
+  color: white !important;
+}
+
+.mat-mdc-tab-body-content {
+  overflow: hidden !important;
+}
+
+.tabs-and-heading-sticky {
+}
+
+.login-btn:disabled {
+  color: transparent !important;
+  transition: 150ms ease-in-out;
 }
 
 .login-btn {
-  margin-bottom: 20px;
-  margin-left: 40%;
-  background-color: #197278 !important;
-  min-width: 120px;
-  width: 120px;
+  background: transparent !important;
+  border: 2.5px solid black !important;
+  color: white !important;
+  box-shadow: 5px 2.5px 0 0 black !important;
+  transition: 150ms ease-in-out;
 }
 
 .login-btn:hover {
-  background-color: #125256 !important;
-}
-
-.login-btn span {
-  vertical-align: middle;
-}
-
-#mat-input-1 {
-  color: white;
-}
-
-.mat-form-field-underline {
-  background-color: #ffffff !important;
-}
-
-.material-icons {
-  margin-left: 10px;
-}
-
-@media only screen and (max-width: 800px) {
-
-  .main-content {
-    display: flex;
-    justify-content: center;
-  }
-
-  .login {
-    width: auto;
-    left: auto;
-  }
-}
-
-input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus,
-input:-webkit-autofill:active {
-  -webkit-transition: color 9999s ease-out, background-color 9999s ease-out;
-  -webkit-transition-delay: 9999s;
+  transition: 150ms ease-in-out;
+  background: #FFC947 !important;
+  color: black !important;
+  box-shadow: 0 0 0 0 black !important;
 }

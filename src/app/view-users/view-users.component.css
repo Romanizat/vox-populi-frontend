@@ -1,8 +1,19 @@
 .display-users {
-  margin-top: 15%;
+  margin: 10% auto 0;
+  max-width: 90%;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 /*TODO: mat-icon cursor change*/
+
+.delete-btn {
+  transition: 250ms ease-in-out;
+}
+
+.delete-btn:hover {
+  transition: 250ms ease-in-out;
+  cursor: pointer !important;
+  color: red !important;
+}

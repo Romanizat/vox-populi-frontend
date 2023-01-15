@@ -1,10 +1,26 @@
+.create-event-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 2rem;
+}
+
 .add-category {
-  background-color: #125256;
   float: right;
+  background: transparent !important;
+  color: black !important;
+  border: 2.5px solid black;
+  box-shadow: 5px 5px 0 0 black;
+  transition: 150ms ease-in-out;
 }
 
 .add-category:hover {
-  background-color: #0c3639;
+  box-shadow: 0 0 0 0 black;
+  color: black !important;
+  background: #FFC947 !important;
+  transition: 150ms ease-in-out;
 }
 
 mat-form-field {

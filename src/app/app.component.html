@@ -1,6 +1,5 @@
 <mat-drawer-container class="navbar-container">
   <mat-drawer #sidenav [opened]="opened" id="menu" [mode]="mode" class="side-navbar">
-<!--    <img class="isum-logo" routerLink="/upis-sati" src="../../assets/isumLogo.png">-->
     <hr>
 
     <mat-list class="role-menu-list">
@@ -9,14 +8,14 @@
       <mat-list-item *ngFor="let menuItem of menuItems" class="role-menu-list-item" mat-line
                      routerLink="{{menuItem?.path}}" (click)="sideNavCloseOnMobile()">
         <mat-icon mat-list-icon>{{menuItem?.icon}}</mat-icon>
-        <div>{{menuItem?.title}}</div>
+        <div class="menu-item-title">{{menuItem?.title}}</div>
       </mat-list-item>
       <div>
         <hr>
       </div>
       <mat-list-item class="role-menu-list-item logout" (click)="logout()" mat-line>
         <mat-icon mat-list-icon>meeting_room</mat-icon>
-        <div>Logout</div>
+        <div class="menu-item-title">Logout</div>
       </mat-list-item>
 
     </mat-list>

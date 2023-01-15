@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {IUser} from "../../@types/User";
-import {MatLegacySnackBar as MatSnackBar} from "@angular/material/legacy-snack-bar";
 import {UserServicesService} from "../services/user-services.service";
-import {MatLegacyTableDataSource as MatTableDataSource} from "@angular/material/legacy-table";
+import {MatTableDataSource} from "@angular/material/table";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-view-users',

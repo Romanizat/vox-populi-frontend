@@ -1,12 +1,43 @@
+.event-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+  margin: 1rem 0;
+}
+
+.event-name, .event-location {
+  color: #FFC947;
+}
+
+h2:first-child {
+  font-size: 5rem;
+  margin: 1rem;
+}
+
+h2:nth-child(2),
+h2:nth-child(3) {
+  font-size: 2rem;
+  margin: 0.5rem;
+}
+
+.event-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+
 .example-list {
-  width: 500px;
-  max-width: 100%;
-  border: solid 1px #ccc;
-  min-height: 60px;
-  display: block;
-  background: white;
-  border-radius: 4px;
-  overflow: hidden;
+  width: 75%;
+  margin: 1rem auto 2rem;
+  box-shadow: 20px 20px 0 0 black;
+  border: 5px solid black;
+  border-radius: 10px;
 }
 
 .example-box {
@@ -21,6 +52,22 @@
   cursor: move;
   background: white;
   font-size: 14px;
+  width: 100%;
+}
+
+.song-title {
+  width: 40%;
+}
+
+.invite-user {
+  width: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.yt-hook {
+  width: 40%;
 }
 
 .cdk-drag-preview {

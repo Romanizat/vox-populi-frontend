@@ -1,17 +1,18 @@
-import {Component, OnInit, ViewChild} from "@angular/core";
-import {UntypedFormControl, UntypedFormGroup, FormGroupDirective, NgForm, Validators} from "@angular/forms";
+import {Component, OnInit, ViewChild, ViewEncapsulation} from "@angular/core";
+import {FormGroupDirective, NgForm, UntypedFormControl, UntypedFormGroup, Validators} from "@angular/forms";
 import {ErrorStateMatcher} from "@angular/material/core";
 import {AuthenticationService} from "../../utils/authentication.service";
 import {Router} from "@angular/router";
-import {MatLegacySnackBar as MatSnackBar} from "@angular/material/legacy-snack-bar";
 import {IUser} from "../../@types/User";
 import {UserServicesService} from "../services/user-services.service";
-import {MatLegacyTabGroup as MatTabGroup} from "@angular/material/legacy-tabs";
+import {MatTabGroup} from "@angular/material/tabs";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: "app-login",
   templateUrl: "./login.component.html",
-  styleUrls: ["./login.component.css"]
+  styleUrls: ["./login.component.css"],
+  encapsulation: ViewEncapsulation.None
 })
 export class LoginComponent implements OnInit, ErrorStateMatcher {
   @ViewChild(MatTabGroup) tabGroup!: MatTabGroup;
@@ -21,9 +22,9 @@ export class LoginComponent implements OnInit, ErrorStateMatcher {
     password: new UntypedFormControl("", Validators.required)
   });
   registerForm = new UntypedFormGroup({
-    firstName: new UntypedFormControl("", Validators.required),
-    lastName: new UntypedFormControl("", Validators.required),
-    email: new UntypedFormControl("", Validators.required),
+    firstName: new UntypedFormControl("", [Validators.required, Validators.pattern('^[a-zA-Z \-\']+')]),
+    lastName: new UntypedFormControl("", [Validators.required, Validators.pattern('^[a-zA-Z \-\']+')]),
+    email: new UntypedFormControl("", [Validators.required, Validators.email]),
     username: new UntypedFormControl("", Validators.required),
     password: new UntypedFormControl("", Validators.required),
   });

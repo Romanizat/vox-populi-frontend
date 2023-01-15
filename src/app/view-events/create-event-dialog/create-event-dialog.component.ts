@@ -2,12 +2,12 @@ import {Component, OnInit} from '@angular/core';
 import {IUser} from "../../../@types/User";
 import {UserServicesService} from "../../services/user-services.service";
 import {AuthenticationService} from "../../../utils/authentication.service";
-import {MatLegacySnackBar as MatSnackBar} from "@angular/material/legacy-snack-bar";
 import {UntypedFormControl, UntypedFormGroup} from "@angular/forms";
 import {IEvent} from "../../../@types/Event";
 import {EventServicesService} from "../../services/event-services.service";
-import {MatLegacyDialogRef as MatDialogRef} from "@angular/material/legacy-dialog";
 import {utcShift} from "../../../utils/dateUtil";
+import {MatDialogRef} from "@angular/material/dialog";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-create-event',

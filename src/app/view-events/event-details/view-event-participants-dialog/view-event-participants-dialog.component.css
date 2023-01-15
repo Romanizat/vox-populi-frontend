@@ -1,0 +1,14 @@
+.event-participants-wrapper {
+  height: 100%;
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.delete-btn:hover {
+  color: #ff0000;
+  cursor: pointer;
+}

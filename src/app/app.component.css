@@ -1,6 +1,9 @@
+body {
+  background: #303035;
+}
 
 .side-navbar {
-  background-color: #242429;
+  background-color: #0A1931;
   min-width: 10%;
 }
 
@@ -12,29 +15,33 @@ mat-drawer-content {
   display: flex;
   flex-direction: column;
   text-align: left;
+  gap: 0.5rem;
 }
 
+mat-icon {
+  color: white !important;
+}
+
+.menu-item-title {
+  color: white;
+}
 
 .role-menu-list .role-menu-list-item {
   color: white !important;
   cursor: pointer;
   font-size: 20px !important;
+  height: 100%;
+  padding-block: 0.25rem;
 }
 
 .role-menu-list .role-menu-list-item:hover {
-  background-color: #197278;
+  background-color: #185ADB;
   transition: background-color 150ms linear;
 }
 
 .isum-logo {
   margin-top: 1em;
   padding-left: 20px;
-}
-
-
-::selection {
-  color: white;
-  background: #197278;
 }
 
 #hamburger {

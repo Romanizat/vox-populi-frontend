@@ -1,6 +1,6 @@
 .display-events {
-  max-width: 100%;
-  margin-top: 15%;
+  max-width: 90%;
+  margin: 10% auto 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -8,10 +8,29 @@
 }
 
 .display-events th {
-  padding: 10%;
+  padding: 1rem 0.5rem;
+  /*font-size: 1rem !important;*/
 }
 
 .display-events button {
   margin-top: 2%;
   background-color: black;
+}
+
+.add-btn {
+  background: transparent !important;
+  border: 2.5px solid black !important;
+  color: black !important;
+  box-shadow: 5px 2.5px 0 0 black !important;
+  transition: 150ms ease-in-out;
+}
+
+.add-btn:hover {
+  transition: 150ms ease-in-out;
+  background: #FFC947 !important;
+  box-shadow: 0 0 0 0 black !important;
+}
+
+.delete-btn:hover {
+  cursor: pointer;
 }

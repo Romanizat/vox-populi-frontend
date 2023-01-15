@@ -1,0 +1,30 @@
+.event-suggestion-wrapper {
+  height: 100%;
+  padding: 2rem;
+}
+
+form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+mat-form-field {
+  width: 80% !important;
+}
+
+.add-category {
+  box-shadow: 5px 5px 0 0 black;
+  border: 2.5px solid black;
+  background: transparent !important;
+  color: black !important;
+  transition: 150ms ease-in-out;
+}
+
+.add-category:hover {
+  box-shadow: 0 0 0 0 black;
+  background: #FFC947 !important;
+  color: black;
+  transition: 150ms ease-in-out;
+}

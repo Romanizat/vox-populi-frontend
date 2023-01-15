@@ -1,21 +1,17 @@
 <div class="main-content">
   <div class="login">
     <!--    <img alt="" class="logo" src="../../assets/logo.svg">-->
-    <mat-tab-group>
+    <mat-tab-group mat-stretch-tabs>
       <mat-tab label="Login" class="tabs-and-heading-sticky">
         <form [formGroup]="loginForm">
-          <div>
-            <mat-form-field class="username">
-              <mat-label>Username</mat-label>
-              <input matInput formControlName="username">
-            </mat-form-field>
-          </div>
-          <div>
-            <mat-form-field class="password">
-              <mat-label>Password</mat-label>
-              <input matInput formControlName="password" type="password">
-            </mat-form-field>
-          </div>
+          <mat-form-field class="username">
+            <mat-label>Username</mat-label>
+            <input matInput formControlName="username">
+          </mat-form-field>
+          <mat-form-field class="password">
+            <mat-label>Password</mat-label>
+            <input matInput formControlName="password" type="password">
+          </mat-form-field>
           <button (click)="login()" [disabled]="loginForm.invalid" class="login-btn" color="primary" mat-raised-button>
             LOGIN
             <span class="material-icons">send</span>
@@ -24,36 +20,26 @@
       </mat-tab>
       <mat-tab label="Register" class="tabs-and-heading-sticky">
         <form [formGroup]="registerForm">
-          <div>
-            <mat-form-field class="username">
-              <mat-label>First Name</mat-label>
-              <input matInput formControlName="firstName">
-            </mat-form-field>
-          </div>
-          <div>
-            <mat-form-field class="username">
-              <mat-label>Last Name</mat-label>
-              <input matInput formControlName="lastName">
-            </mat-form-field>
-          </div>
-          <div>
-            <mat-form-field class="username">
-              <mat-label>Email</mat-label>
-              <input matInput formControlName="email">
-            </mat-form-field>
-          </div>
-          <div>
-            <mat-form-field class="username">
-              <mat-label>Username</mat-label>
-              <input matInput formControlName="username">
-            </mat-form-field>
-          </div>
-          <div>
-            <mat-form-field class="password">
-              <mat-label>Password</mat-label>
-              <input matInput formControlName="password" type="password">
-            </mat-form-field>
-          </div>
+          <mat-form-field class="username">
+            <mat-label>First Name</mat-label>
+            <input matInput formControlName="firstName">
+          </mat-form-field>
+          <mat-form-field class="username">
+            <mat-label>Last Name</mat-label>
+            <input matInput formControlName="lastName">
+          </mat-form-field>
+          <mat-form-field class="username">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email">
+          </mat-form-field>
+          <mat-form-field class="username">
+            <mat-label>Username</mat-label>
+            <input matInput formControlName="username">
+          </mat-form-field>
+          <mat-form-field class="password">
+            <mat-label>Password</mat-label>
+            <input matInput formControlName="password" type="password">
+          </mat-form-field>
           <button (click)="register()" [disabled]="registerForm.invalid" class="login-btn" color="primary"
                   mat-raised-button>
             REGISTER

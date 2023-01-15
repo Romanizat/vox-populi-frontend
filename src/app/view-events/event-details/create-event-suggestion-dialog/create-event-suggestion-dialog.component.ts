@@ -1,11 +1,10 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {UntypedFormControl, UntypedFormGroup} from "@angular/forms";
-import {ActivatedRoute} from "@angular/router";
-import {MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA, MatLegacyDialogRef as MatDialogRef} from "@angular/material/legacy-dialog";
-import {MatLegacySnackBar as MatSnackBar} from "@angular/material/legacy-snack-bar";
 import {IEventSuggestion} from "../../../../@types/EventSuggestion";
 import {EventSuggestionServicesServices} from "../../../services/event-suggestion-services.services";
 import {IEvent} from "../../../../@types/Event";
+import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-create-event-suggestion-dialog',

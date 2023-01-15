@@ -1,36 +1,37 @@
-<div class="event-info">
-  <h2>Event: {{event?.name}}</h2>
-  <h2>Date: {{event?.date}}</h2>
-  <h2>Location: {{event?.location}}</h2>
-</div>
-<div class="add-song">
-  <button (click)="openEventSuggestionDialog()" class="color-secondary add-btn" mat-fab
-          matTooltip="Add event suggestion">
-    <mat-icon>add</mat-icon>
-  </button>
-</div>
-<div class="view-participants" *ngIf="eventParticipant.organizer">
-  <button (click)="openViewEventParticipantsDialog()" class="color-secondary add-btn" mat-fab
-          matTooltip="View event participants">
-    <mat-icon>groups</mat-icon>
-  </button>
-</div>
-<div class="delete-event" *ngIf="eventParticipant.organizer">
-  <button (click)="deleteEvent()" class="color-secondary add-btn" mat-fab
-          matTooltip="Delete Event">
-    <mat-icon>delete_forever</mat-icon>
-  </button>
-</div>
-<div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
-  <div class="example-box" *ngFor="let eventSuggestion of eventSuggestionList" cdkDrag>
-    <h3 class="song-title">{{eventSuggestion.title}}</h3>
-    <div class="invite-user" *ngIf="eventParticipant.organizer">
-      <button (click)="deleteSuggestion(eventSuggestion)" class="color-secondary add-btn" mat-fab
-              matTooltip="Delete event suggestion">
-        <mat-icon>delete</mat-icon>
+  <div class="event-info">
+    <h2>Event: <span class="event-name">{{event?.name}}</span></h2>
+    <h2>{{event?.date | date: "dd.MM.yyyy" }}</h2>
+    <h2>Location: <span class="event-location">{{event?.location}}</span></h2>
+  </div>
+  <div class="event-actions">
+    <div class="add-song">
+      <button (click)="openEventSuggestionDialog()" class="color-secondary add-btn" mat-fab
+              matTooltip="Add event suggestion">
+        <mat-icon>add</mat-icon>
       </button>
     </div>
-    <div [innerHTML]="iframe_start +  eventSuggestion?.url + iframe_end | safe: 'html'"></div>
+    <div class="view-participants" *ngIf="eventParticipant.organizer">
+      <button (click)="openViewEventParticipantsDialog()" class="color-secondary add-btn" mat-fab
+              matTooltip="View event participants">
+        <mat-icon>groups</mat-icon>
+      </button>
+    </div>
+    <div class="delete-event" *ngIf="eventParticipant.organizer">
+      <button (click)="deleteEvent()" class="color-secondary add-btn" mat-fab
+              matTooltip="Delete Event">
+        <mat-icon>delete_forever</mat-icon>
+      </button>
+    </div>
   </div>
-</div>
-
+  <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+    <div class="example-box" *ngFor="let eventSuggestion of eventSuggestionList" cdkDrag>
+      <h3 class="song-title">{{eventSuggestion.title}}</h3>
+      <div class="invite-user" *ngIf="eventParticipant.organizer">
+        <button (click)="deleteSuggestion(eventSuggestion)" class="color-secondary add-btn" mat-fab
+                matTooltip="Delete event suggestion">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+      <div class="yt-hook" [innerHTML]="iframe_start +  eventSuggestion?.url + iframe_end | safe: 'html'"></div>
+    </div>
+  </div>

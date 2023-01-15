@@ -1,19 +1,20 @@
-import {Component, OnInit} from '@angular/core';
-import {MatLegacyTableDataSource as MatTableDataSource} from "@angular/material/legacy-table";
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {IEvent} from "../../@types/Event";
-import {MatLegacySnackBar as MatSnackBar} from "@angular/material/legacy-snack-bar";
 import {UserServicesService} from "../services/user-services.service";
 import {EventServicesService} from "../services/event-services.service";
 import {AuthenticationService} from "../../utils/authentication.service";
 import {IUser} from "../../@types/User";
-import {MatLegacyDialog as MatDialog} from "@angular/material/legacy-dialog";
 import {CreateEventDialogComponent} from "./create-event-dialog/create-event-dialog.component";
 import {Router} from "@angular/router";
+import {MatTableDataSource} from "@angular/material/table";
+import {MatDialog} from "@angular/material/dialog";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-view-events',
   templateUrl: './view-events.component.html',
-  styleUrls: ['./view-events.component.css']
+  styleUrls: ['./view-events.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class ViewEventsComponent implements OnInit {
   eventList: IEvent[] = [];
@@ -63,7 +64,7 @@ export class ViewEventsComponent implements OnInit {
 
   openCreateEventDialog() {
     const dialogRef = this.dialog.open(CreateEventDialogComponent, {
-      width: "400px",
+      minWidth: "50%",
       backdropClass: "background"
     });
     dialogRef.afterClosed().toPromise().then(() => {

@@ -7,17 +7,17 @@ import {EventSuggestionServicesServices} from "../../services/event-suggestion-s
 import {
   CreateEventSuggestionDialogComponent
 } from "./create-event-suggestion-dialog/create-event-suggestion-dialog.component";
-import {MatLegacyDialog as MatDialog} from "@angular/material/legacy-dialog";
 import {CdkDragDrop, moveItemInArray} from "@angular/cdk/drag-drop";
 import {IUser} from "../../../@types/User";
 import {UserServicesService} from "../../services/user-services.service";
 import {AuthenticationService} from "../../../utils/authentication.service";
-import {MatLegacySnackBar as MatSnackBar} from "@angular/material/legacy-snack-bar";
 import {EventParticipantServicesService} from "../../services/event-participant-services.service";
 import {IEventParticipant} from "../../../@types/EventParticipant";
 import {
   ViewEventParticipantsDialogComponent
 } from "./view-event-participants-dialog/view-event-participants-dialog.component";
+import {MatDialog} from "@angular/material/dialog";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-event-details',
@@ -87,7 +87,7 @@ export class EventDetailsComponent implements OnInit {
 
   openEventSuggestionDialog() {
     const dialogRef = this.dialog.open(CreateEventSuggestionDialogComponent, {
-      width: "400px",
+      minWidth: "25%",
       backdropClass: "background",
       data: this.event
     });
@@ -111,7 +111,8 @@ export class EventDetailsComponent implements OnInit {
 
   openViewEventParticipantsDialog() {
     this.dialog.open(ViewEventParticipantsDialogComponent, {
-      width: "600px",
+      minWidth: "50%",
+      minHeight: "50%",
       backdropClass: "background",
       data: this.event.id
     });

@@ -1,18 +1,16 @@
-<div>
+<div class="event-suggestion-wrapper">
   <form [formGroup]="form">
-    <div>
-      <h1 class="topHeading">Add new song suggestion for this event!</h1>
-      <mat-form-field tabindex="3">
-        <mat-label>Title</mat-label>
-        <input formControlName="title" matInput required>
-      </mat-form-field>
-      <br>
-      <mat-form-field tabindex="3">
-        <mat-label>Song url</mat-label>
-        <input formControlName="url" matInput required>
-      </mat-form-field>
-      <br>
-      <button (click)="createEventSuggestion()" class="add-category" color="primary" mat-raised-button>Save</button>
-    </div>
+    <h1 class="topHeading">Add new song suggestion for this event!</h1>
+    <mat-form-field tabindex="3">
+      <mat-label>Title</mat-label>
+      <input formControlName="title" matInput required>
+    </mat-form-field>
+    <br>
+    <mat-form-field tabindex="3">
+      <mat-label>Song url</mat-label>
+      <input formControlName="url" matInput required>
+    </mat-form-field>
+    <br>
+    <button (click)="createEventSuggestion()" class="add-category" color="primary" mat-raised-button>Save</button>
   </form>
 </div>
