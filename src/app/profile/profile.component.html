@@ -1,1 +1,40 @@
-<p>profile works!</p>
+<div class="wrapper">
+  <div class="user">
+    <img alt="Profile photo"
+         src="{{user.profilePhoto || 'https://avatars.dicebear.com/api/croodles/stefan.svg'}}">
+
+    <div class="user-name">
+      <h4>{{user.name}} {{user.lastName}}</h4>
+      <div class="edit-dialog">
+        <button class="edit-button" color="primary" mat-raised-button>Edit</button>
+      </div>
+    </div>
+  </div>
+  <div class="user-table">
+    <table class="moj-profil-tabela">
+      <tbody>
+      <tr>
+        <td><span class="material-icons">savings</span></td>
+        <td><span>Ukupno zarađeno</span></td>
+<!--        <td><span>{{totalEarned | number : '1.2-2'}}€</span></td>-->
+      </tr>
+      <tr>
+        <td><span class="material-icons">request_quote</span></td>
+        <td><span>Ukupno zaduženje</span></td>
+<!--        <td><span>{{totalOwedDebit | number : '1.2-2'}}€</span></td>-->
+      </tr>
+      <tr>
+        <td><span class="material-icons">payments</span></td>
+        <td><span>Ukupno razduženje</span></td>
+<!--        <td><span>{{totalSurplusDebit | number : '1.2-2'}}€</span></td>-->
+      </tr>
+      <tr>
+        <td><span class="material-icons">attach_money</span></td>
+        <td><span>Preostalo za isplatu</span></td>
+<!--        <td><span>{{totalRemainingDebit | number : '1.2-2'}}€</span></td>-->
+      </tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>

@@ -1,0 +1,120 @@
+.moj-profil {
+  width: 75%;
+  display: inline-block;
+}
+
+.wrapper {
+  text-align: center;
+  margin-top: 10%;
+
+}
+
+.moj-profil h2 {
+  font-size: 3em;
+}
+
+.moj-profil hr {
+  margin-right: 20%;
+}
+
+.user {
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  margin-top: 5%;
+}
+
+.user img {
+  width: auto;
+  height: auto;
+  max-width: 300px;
+  max-height: 200px;
+  border-radius: 20px;
+}
+
+.user-table {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 10em;
+}
+
+.user-table table {
+  width: 100%;
+  font-size: 20px;
+}
+
+.moj-profil-tabela tr {
+  width: 50%;
+  height: 50px;
+}
+
+.user-name h4 {
+  margin-top: 15px;
+  font-size: 1.5em;
+  font-weight: 400;
+}
+
+.user-table tr:not(:last-child) td {
+  border-bottom: 1px solid black;
+
+}
+
+.username {
+  width: 200px;
+  text-align: center;
+}
+
+.user-table td > span {
+  margin: 0 1em;
+  text-align: left;
+}
+
+.user-table :nth-child(3) > span {
+  color: #125256;
+}
+
+.user-table > td {
+  text-align: left;
+}
+
+.edit-dialog {
+  max-width: 30px;
+  max-height: 20px;
+  position: relative;
+  bottom: 5em;
+  left: 12em;
+  cursor: pointer;
+}
+
+.edit-button {
+  box-shadow: 5px 5px 0 0 black;
+  border: 2.5px solid black;
+  background: transparent !important;
+  color: black !important;
+  transition: 150ms ease-in-out;
+}
+
+.edit-button:hover {
+  box-shadow: 0 0 0 0 black;
+  background: #FFC947 !important;
+  color: black;
+  transition: 150ms ease-in-out;
+}
+
+@media only screen and (max-width: 600px) {
+
+  .user-table {
+    margin-left: 0;
+  }
+
+  .editDialog {
+    left: 10em !important;
+  }
+
+}
+
+@media only screen and (max-width: 375px) {
+  .user-table > table {
+    font-size: 15px;
+  }
+}

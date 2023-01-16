@@ -39,11 +39,6 @@ mat-icon {
   transition: background-color 150ms linear;
 }
 
-.isum-logo {
-  margin-top: 1em;
-  padding-left: 20px;
-}
-
 #hamburger {
   display: none;
 }
