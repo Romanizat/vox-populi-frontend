@@ -1,8 +1,9 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
 import {IUser} from "../../@types/User";
 import {UserServicesService} from "../services/user-services.service";
 import {MatTableDataSource} from "@angular/material/table";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {MatSort} from "@angular/material/sort";
 
 @Component({
   selector: 'app-view-users',
@@ -10,6 +11,9 @@ import {MatSnackBar} from "@angular/material/snack-bar";
   styleUrls: ['./view-users.component.css']
 })
 export class ViewUsersComponent implements OnInit {
+
+  @ViewChild(MatSort) sort: MatSort;
+
   userList: IUser[] = [];
   dataSource = new MatTableDataSource<IUser>([]);
   displayedColumns: string[] = ["name", "lastName", "username", "banned"];
@@ -31,6 +35,7 @@ export class ViewUsersComponent implements OnInit {
     this.userService.getAllUsers().toPromise().then(data => {
       this.userList = data;
       this.dataSource.data = this.userList;
+      this.dataSource.sort = this.sort;
     });
   }
 

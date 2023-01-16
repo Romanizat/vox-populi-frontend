@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
 import {IEvent} from "../../@types/Event";
 import {UserServicesService} from "../services/user-services.service";
 import {EventServicesService} from "../services/event-services.service";
@@ -9,6 +9,7 @@ import {Router} from "@angular/router";
 import {MatTableDataSource} from "@angular/material/table";
 import {MatDialog} from "@angular/material/dialog";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {MatSort} from "@angular/material/sort";
 
 @Component({
   selector: 'app-view-events',
@@ -17,6 +18,9 @@ import {MatSnackBar} from "@angular/material/snack-bar";
   encapsulation: ViewEncapsulation.None
 })
 export class ViewEventsComponent implements OnInit {
+
+  @ViewChild(MatSort) sort: MatSort;
+
   eventList: IEvent[] = [];
   dataSource = new MatTableDataSource<IEvent>([]);
   displayedColumns: string[] = ["name", "date", "location", "details"];
@@ -53,6 +57,7 @@ export class ViewEventsComponent implements OnInit {
       this.eventService.getAllEventsByUserId(userId).toPromise().then(data => {
         this.eventList = data;
         this.dataSource.data = this.eventList;
+        this.dataSource.sort = this.sort;
       }, err => {
         this.openSnackBar(err.error.message, "Close");
       });

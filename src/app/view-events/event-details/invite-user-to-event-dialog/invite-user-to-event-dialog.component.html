@@ -1,16 +1,18 @@
-<form [formGroup]="form">
-  <div>
-    <h1 class="topHeading">Select a user to invite to this event!</h1>
-    <mat-form-field tabindex="3">
-      <mat-select formControlName="user">
-<!--        <mat-option-->
-        <!--          [value]="null"> Users-->
-        <!--        </mat-option>-->
-        <mat-option *ngFor="let user of usersList" [value]="user">{{user?.username}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-    <br>
-    <button (click)="addUserToEvent()" class="add-category" color="primary" mat-raised-button>Invite</button>
-  </div>
-</form>
+<div class="invite-user-wrapper">
+  <form [formGroup]="form">
+    <div>
+      <h1 class="topHeading">Select a user to invite to this event!</h1>
+      <mat-form-field tabindex="3">
+        <mat-select formControlName="user">
+          <!--        <mat-option-->
+          <!--          [value]="null"> Users-->
+          <!--        </mat-option>-->
+          <mat-option *ngFor="let user of usersList" [value]="user">{{user?.username}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br>
+      <button (click)="addUserToEvent()" class="add-category" color="primary" mat-raised-button>Invite</button>
+    </div>
+  </form>
+</div>

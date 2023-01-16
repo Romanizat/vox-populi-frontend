@@ -1,4 +1,4 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, Inject, OnInit, ViewEncapsulation} from '@angular/core';
 import {IEvent} from "../../../../@types/Event";
 import {UntypedFormControl, UntypedFormGroup} from "@angular/forms";
 import {EventParticipantServicesService} from "../../../services/event-participant-services.service";
@@ -13,7 +13,8 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 @Component({
   selector: 'app-invite-user-to-event-dialog',
   templateUrl: './invite-user-to-event-dialog.component.html',
-  styleUrls: ['./invite-user-to-event-dialog.component.css']
+  styleUrls: ['./invite-user-to-event-dialog.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class InviteUserToEventDialogComponent implements OnInit {
   event: IEvent;

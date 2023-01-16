@@ -1,8 +1,9 @@
 .main-content {
-  background-color: #303035;
+  background-color: #b3b3b3;
   height: 100%;
   width: 100%;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 }
@@ -14,6 +15,39 @@
 
 .login {
   width: clamp(300px, 50%, 700px);
+  height: 70%;
+}
+
+.logo {
+  width: 100%;
+  height: 25%;
+  object-fit: contain;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  transition: 250ms ease-in-out;
+}
+
+.letters {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-letter {
+  font-size: 10rem;
+  transition: 250ms ease-in-out;
+}
+
+.second {
+  color: #FFC947;
+}
+
+.logo-letter:hover {
+  scale: 1.1;
+  cursor: default;
+  transition: 250ms ease-in-out;
 }
 
 form {
@@ -31,7 +65,7 @@ mat-form-field {
 }
 
 input {
-  color: white !important;
+  /*color: white !important;*/
 }
 
 .mat-mdc-tab-body-content {
@@ -42,7 +76,7 @@ input {
 }
 
 .login-btn:disabled {
-  color: transparent !important;
+  color: #747474 !important;
   transition: 150ms ease-in-out;
 }
 
