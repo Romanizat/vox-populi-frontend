@@ -9,4 +9,5 @@ export class IUser {
   email: string;
   banned: boolean;
   roles?: IRole[];
+  profilePhoto?: string;
 }

@@ -5,6 +5,8 @@ import {EventSuggestionServicesServices} from "../../../services/event-suggestio
 import {IEvent} from "../../../../@types/Event";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {IUser} from "../../../../@types/User";
+import {AuthenticationService} from "../../../../utils/authentication.service";
 
 @Component({
   selector: 'app-create-event-suggestion-dialog',
@@ -19,15 +21,24 @@ export class CreateEventSuggestionDialogComponent implements OnInit {
     title: new UntypedFormControl(),
     url: new UntypedFormControl()
   });
+  loggedInUser: IUser;
 
   constructor(private dialogRef: MatDialogRef<CreateEventSuggestionDialogComponent>,
               @Inject(MAT_DIALOG_DATA) public data: IEvent,
               private snackBar: MatSnackBar,
-              private eventSuggestionService: EventSuggestionServicesServices) {
+              private eventSuggestionService: EventSuggestionServicesServices,
+              private authenticationService: AuthenticationService) {
     this.event = data;
   }
 
   ngOnInit(): void {
+    this.getLoggedInUser();
+  }
+
+  getLoggedInUser(): void {
+    this.authenticationService.getLoggedInUser().then(user => {
+      this.loggedInUser = user;
+    });
   }
 
   openSnackBar(message: string, action: string): void {
@@ -49,7 +60,8 @@ export class CreateEventSuggestionDialogComponent implements OnInit {
         event: this.event,
         position: 0,
         title: title,
-        url: url
+        url: url,
+        creatorUserId: this.loggedInUser.id
       }
       this.eventSuggestionService.createEventSuggestion(eventSuggestion).toPromise().then(() => {
         this.close()

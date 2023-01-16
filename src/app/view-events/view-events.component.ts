@@ -32,7 +32,6 @@ export class ViewEventsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.username = this.authenticationService.getUsernameFromToken();
     this.getLoggedInUser();
   }
 
@@ -42,12 +41,10 @@ export class ViewEventsComponent implements OnInit {
     });
   }
 
-  getLoggedInUser() {
-    this.userService.getUserByUsername(this.username).toPromise().then(data => {
-      this.user = data;
+  getLoggedInUser(): void {
+    this.authenticationService.getLoggedInUser().then(user => {
+      this.user = user;
       this.getAllEventsForUser(this.user.id);
-    }, err => {
-      this.openSnackBar(err.error.message, "Close");
     });
   }
 

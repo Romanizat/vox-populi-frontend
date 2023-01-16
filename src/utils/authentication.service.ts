@@ -4,13 +4,17 @@ import {environment} from "../environments/environment";
 import jwt_decode from "jwt-decode"
 import {Router} from "@angular/router";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {UserServicesService} from "../app/services/user-services.service";
 
 const tokenName: string = 'userToken';
 
 @Injectable({providedIn: "root"})
 export class AuthenticationService {
 
-  constructor(private http: HttpClient, private router: Router, private snackBar: MatSnackBar) {
+  constructor(private http: HttpClient,
+              private router: Router,
+              private snackBar: MatSnackBar,
+              private userService: UserServicesService) {
   }
 
   get userRoles(): string[] {
@@ -66,4 +70,9 @@ export class AuthenticationService {
     // @ts-ignore
     return jwt_decode(this.userJwtToken).sub;
   }
+
+  getLoggedInUser() {
+    return this.userService.getUserByUsername(this.getUsernameFromToken()).toPromise();
+  }
+
 }
