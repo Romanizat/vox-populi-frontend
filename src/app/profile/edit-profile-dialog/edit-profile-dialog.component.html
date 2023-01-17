@@ -1,0 +1,47 @@
+<div>
+  <form [formGroup]="form">
+    <div>
+      <mat-form-field>
+        <mat-label>First Name</mat-label>
+        <input formControlName="firstName" matInput>
+      </mat-form-field>
+      <div>
+        <mat-form-field>
+          <mat-label>Last Name</mat-label>
+          <input formControlName="lastName" matInput>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field>
+          <mat-label>Username</mat-label>
+          <input formControlName="username" matInput>
+        </mat-form-field>
+      </div>
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input formControlName="email" matInput>
+      </mat-form-field>
+      <div>
+        <mat-form-field>
+          <mat-label>Password</mat-label>
+          <input formControlName="password" matInput type="password">
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-label>Profile picture</mat-label>
+        <br>
+        <input class="input-profile-pic" name="profilePic" accept=".jpeg, .jpg, .png" id="profilePic" type="file"
+               (change)="fileEvent($event)"
+               placeholder="Profile picture">
+        <div>
+          <span *ngIf="this.file?.size>1000000">Image is too large, 1MB is max!</span>
+        </div>
+      </div>
+      <div>
+        <button (click)="updateProfile()" class="save-btn" color="primary" mat-raised-button
+                [disabled]="this.file?.size>1000000 || form.invalid">Update
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

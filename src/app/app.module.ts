@@ -41,6 +41,7 @@ import {MatDialogModule} from "@angular/material/dialog";
 import {MatSelectModule} from "@angular/material/select";
 import {MatListModule} from "@angular/material/list";
 import {MatFormFieldModule} from "@angular/material/form-field";
+import { EditProfileDialogComponent } from './profile/edit-profile-dialog/edit-profile-dialog.component';
 
 const appRoutes: Routes = [
   {path: "", component: LoginComponent},
@@ -62,7 +63,8 @@ const appRoutes: Routes = [
     CreateEventSuggestionDialogComponent,
     SafePipe,
     InviteUserToEventDialogComponent,
-    ViewEventParticipantsDialogComponent
+    ViewEventParticipantsDialogComponent,
+    EditProfileDialogComponent
   ],
   imports: [
     BrowserModule,

@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {IUser} from "../../@types/User";
 import {environment} from "../../environments/environment";
+import {Vote} from "../../@types/vote.model";
 
 @Injectable({
   providedIn: "root"
@@ -31,6 +32,10 @@ export class UserServicesService {
 
   save(user: IUser): Observable<IUser> {
     return this.http.post<IUser>(`${environment.apiUrl}/users`, user, {responseType: "json"});
+  }
+
+  update(user: IUser): Observable<IUser> {
+    return this.http.put<IUser>(`${environment.apiUrl}/users`, user, {responseType: "json"});
   }
 
 }
