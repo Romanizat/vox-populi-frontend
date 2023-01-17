@@ -17,6 +17,10 @@ export class UserServicesService {
     return this.http.get<IUser[]>(`${environment.apiUrl}/users`, {responseType: "json"});
   }
 
+  getUserById(id: number): Observable<IUser> {
+    return this.http.get<IUser>(`${environment.apiUrl}/users/${id}`, {responseType: "json"});
+  }
+
   getUserByUsername(username: string): Observable<IUser> {
     return this.http.get<IUser>(`${environment.apiUrl}/users/user-by-username/${username}`, {responseType: "json"});
   }

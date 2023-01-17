@@ -7,6 +7,6 @@ export class IEventSuggestion {
   position: number;
   title: string;
   url: string;
-  votes?: Vote[];
+  votes: Vote[];
   creatorUserId?: number;
 }

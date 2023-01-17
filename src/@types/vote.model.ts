@@ -5,4 +5,5 @@ export class Vote {
   id?: number;
   eventSuggestion: IEventSuggestion;
   user: IUser;
+  upvote: boolean;
 }

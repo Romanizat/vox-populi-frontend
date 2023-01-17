@@ -135,4 +135,15 @@ export class EventDetailsComponent implements OnInit {
       this.openSnackBar(err.error.message, "Close");
     });
   }
+
+  getNumberOfLikes(eventSuggestion: IEventSuggestion) {
+    return eventSuggestion.votes.filter(eventSuggestionVote => eventSuggestionVote.upvote).length;
+  }
+
+  getNumberOfDislikes(eventSuggestion: IEventSuggestion) {
+    return eventSuggestion.votes.filter(eventSuggestionVote => !eventSuggestionVote.upvote).length;
+  }
+
+//  TODO: implement logic for voting on event suggestions (like/dislike)
+
 }

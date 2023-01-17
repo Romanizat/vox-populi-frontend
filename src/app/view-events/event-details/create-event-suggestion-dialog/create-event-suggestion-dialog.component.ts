@@ -61,6 +61,7 @@ export class CreateEventSuggestionDialogComponent implements OnInit {
         position: 0,
         title: title,
         url: url,
+        votes: [],
         creatorUserId: this.loggedInUser.id
       }
       this.eventSuggestionService.createEventSuggestion(eventSuggestion).toPromise().then(() => {
