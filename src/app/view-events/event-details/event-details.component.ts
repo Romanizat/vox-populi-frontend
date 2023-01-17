@@ -18,6 +18,8 @@ import {
 } from "./view-event-participants-dialog/view-event-participants-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {VoteServiceService} from "../../services/vote-service.service";
+import {Vote} from "../../../@types/vote.model";
 
 @Component({
   selector: 'app-event-details',
@@ -40,6 +42,7 @@ export class EventDetailsComponent implements OnInit {
               private userService: UserServicesService,
               private authenticationService: AuthenticationService,
               private eventParticipantService: EventParticipantServicesService,
+              private voteService: VoteServiceService,
               private router: Router) {
   }
 
@@ -144,6 +147,52 @@ export class EventDetailsComponent implements OnInit {
     return eventSuggestion.votes.filter(eventSuggestionVote => !eventSuggestionVote.upvote).length;
   }
 
-//  TODO: implement logic for voting on event suggestions (like/dislike)
+  didUserLike(eventSuggestion: IEventSuggestion): boolean {
+    return eventSuggestion.votes
+      .filter(eventSuggestionVote => eventSuggestionVote.upvote && eventSuggestionVote.userId === this.user.id).length > 0;
+  }
 
+  didUserDislike(eventSuggestion: IEventSuggestion): boolean {
+    return eventSuggestion.votes
+      .filter(eventSuggestionVote => !eventSuggestionVote.upvote && eventSuggestionVote.userId === this.user.id).length > 0;
+  }
+
+  didUserVote(eventSuggestion: IEventSuggestion): boolean {
+    return eventSuggestion.votes
+      .filter(eventSuggestionVote => eventSuggestionVote.userId === this.user.id).length > 0;
+  }
+
+  vote(eventSuggestion: IEventSuggestion, upvote: boolean) {
+    if (!this.didUserVote(eventSuggestion)) {
+      const vote: Vote = {
+        upvote: upvote,
+        userId: this.user.id,
+        eventSuggestionId: eventSuggestion.id
+      };
+      this.voteService.createVote(vote).toPromise().then(() => {
+        this.openSnackBar("You have successfully voted", "Close");
+        this.getAllEventSuggestionsForEvent(this.eventId);
+      }, err => {
+        this.openSnackBar(err.error.message, "Close");
+      });
+    } else {
+      let vote = eventSuggestion.votes.filter(eventSuggestionVote => eventSuggestionVote.userId === this.user.id)[0];
+      if ((this.didUserLike(eventSuggestion) && upvote) || (this.didUserDislike(eventSuggestion) && !upvote)) {
+        this.voteService.deleteVote(vote.id).toPromise().then(() => {
+          this.openSnackBar("You have successfully removed your vote", "Close");
+          this.getAllEventSuggestionsForEvent(this.eventId);
+        }, err => {
+          this.openSnackBar(err.error.message, "Close");
+        });
+      } else {
+        vote.upvote = upvote;
+        this.voteService.updateVote(vote).toPromise().then(() => {
+          this.openSnackBar("You have successfully changed your vote", "Close");
+          this.getAllEventSuggestionsForEvent(this.eventId);
+        }, err => {
+          this.openSnackBar(err.error.message, "Close");
+        });
+      }
+    }
+  }
 }

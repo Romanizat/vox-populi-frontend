@@ -32,22 +32,29 @@
     <!--    TODO: Get Contributor and add profile pic-->
     <!--    <h4 class="song-title">Contributed by {{getContributor(eventSuggestion)}}</h4>-->
     <div class="invite-user">
-      <button class="color-secondary add-btn" mat-fab>
+      <button (click)="vote(eventSuggestion, true)" class="color-secondary add-btn" mat-fab>
+        <!--TODO: Implement ngClass-->
         <mat-icon>thumb_up</mat-icon>
       </button>
-      <!--      TODO: Style, move the number further apart from the button-->
-      <div>
-        {{getNumberOfLikes(eventSuggestion)}}
+      <div *ngIf="didUserLike(eventSuggestion)">
+        <span>Liked</span>
       </div>
     </div>
+    <!--      TODO: Style, move the number further apart from the button-->
+    <div>
+      {{getNumberOfLikes(eventSuggestion)}}
+    </div>
     <div class="invite-user">
-      <button class="color-secondary add-btn" mat-fab>
+      <button (click)="vote(eventSuggestion, false)" class="color-secondary add-btn" mat-fab>
         <mat-icon>thumb_down</mat-icon>
-        <!--      TODO: Style, move the number further apart from the button-->
-        <div>
-          {{getNumberOfDislikes(eventSuggestion)}}
-        </div>
       </button>
+      <div *ngIf="didUserDislike(eventSuggestion)">
+        <span>Disliked</span>
+      </div>
+    </div>
+    <!--      TODO: Style, move the number further apart from the button-->
+    <div>
+      {{getNumberOfDislikes(eventSuggestion)}}
     </div>
     <div class="invite-user" *ngIf="eventParticipant.organizer || eventSuggestion.creatorUserId === user.id">
       <button (click)="deleteSuggestion(eventSuggestion)" class="color-secondary add-btn" mat-fab>
