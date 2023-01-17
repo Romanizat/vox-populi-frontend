@@ -3,6 +3,10 @@ import {AuthenticationService} from "../../utils/authentication.service";
 import {IUser} from "../../@types/User";
 import {MatDialog} from "@angular/material/dialog";
 import {EditProfileDialogComponent} from "./edit-profile-dialog/edit-profile-dialog.component";
+import {EventParticipantServicesService} from "../services/event-participant-services.service";
+import {MatSnackBar} from "@angular/material/snack-bar";
+import {EventSuggestionServicesServices} from "../services/event-suggestion-services.services";
+import {VoteServiceService} from "../services/vote-service.service";
 
 @Component({
   selector: 'app-profile',
@@ -11,35 +15,58 @@ import {EditProfileDialogComponent} from "./edit-profile-dialog/edit-profile-dia
 })
 export class ProfileComponent implements OnInit {
   user: IUser;
+  numberOfEventsOrganized: number;
+  numberOfEventSuggestions: number;
+  numberOfLikedSuggestions: number;
+  numberOfDislikedSuggestions: number;
 
   constructor(private authenticationService: AuthenticationService,
+              private eventParticipantServicesService: EventParticipantServicesService,
+              private eventSuggestionServicesServices: EventSuggestionServicesServices,
+              private voteServiceService: VoteServiceService,
+              private snackBar: MatSnackBar,
               public dialog: MatDialog) {
   }
 
   ngOnInit(): void {
-    this.getLoggedInUser();
+    this.getLoggedInUserAndInfo();
   }
 
-  getLoggedInUser(): void {
+  getLoggedInUserAndInfo() {
     this.authenticationService.getLoggedInUser().then(user => {
       this.user = user;
+      this.getNumberOfOrganizedEvents();
+      this.getNumberOfSuggestions();
+      this.getNumberOfLikedAndDislikedSuggestions();
     });
   }
 
-  getNumberOfOrganizedEvents(): number {
-    return 0;
+  getNumberOfOrganizedEvents() {
+    this.eventParticipantServicesService.getNumberOfEventsOrganizedByUserId(this.user?.id).toPromise().then(numberOfEvents => {
+      this.numberOfEventsOrganized = numberOfEvents;
+    }, error => {
+      console.log(error);
+      this.openSnackBar("Error while getting number of events organized", "Close");
+    });
   }
 
-  getNumberOfSuggestions(): number {
-    return 0;
+  getNumberOfSuggestions() {
+    this.eventSuggestionServicesServices.getNumberOfEventSuggestionsByUserId(this.user?.id).toPromise().then(numberOfEvents => {
+      this.numberOfEventSuggestions = numberOfEvents;
+    }, error => {
+      console.log(error);
+      this.openSnackBar("Error while getting number of event suggestions", "Close");
+    });
   }
 
-  getNumberOfLikedSuggestions(): number {
-    return 0;
-  }
-
-  getNumberOfDislikedSuggestions(): number {
-    return 0;
+  getNumberOfLikedAndDislikedSuggestions() {
+    this.voteServiceService.getAllVotesFromUser(this.user?.id).toPromise().then(votes => {
+      this.numberOfLikedSuggestions = votes.filter(vote => vote.upvote).length;
+      this.numberOfDislikedSuggestions = votes.filter(vote => !vote.upvote).length;
+    }, error => {
+      console.log(error);
+      this.openSnackBar("Error while getting number of votes", "Close");
+    });
   }
 
   openEditDialog(user: IUser): void {
@@ -52,6 +79,12 @@ export class ProfileComponent implements OnInit {
       if (result) {
         this.user = result;
       }
+    });
+  }
+
+  openSnackBar(message: string, action: string): void {
+    this.snackBar.open(message, action, {
+      duration: 2000,
     });
   }
 

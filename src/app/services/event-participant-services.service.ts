@@ -27,4 +27,8 @@ export class EventParticipantServicesService {
   deleteEventParticipant(eventParticipantId: number | any): Observable<void> {
     return this.http.delete<void>(`${environment.apiUrl}/event-participants/${eventParticipantId}`, {responseType: "json"});
   }
+
+  getNumberOfEventsOrganizedByUserId(userId: number | any): Observable<number> {
+    return this.http.get<number>(`${environment.apiUrl}/event-participants/number-of-events-organized-by-user/${userId}`, {responseType: "json"});
+  }
 }

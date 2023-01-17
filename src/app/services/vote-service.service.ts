@@ -25,4 +25,8 @@ export class VoteServiceService {
     return this.http.delete<void>(`${environment.apiUrl}/votes/${voteId}`, {responseType: "json"});
   }
 
+  getAllVotesFromUser(userId: number | any): Observable<Vote[]> {
+    return this.http.get<Vote[]>(`${environment.apiUrl}/votes/get-all-by-user/${userId}`, {responseType: "json"});
+  }
+
 }

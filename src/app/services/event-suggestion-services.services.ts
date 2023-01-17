@@ -28,6 +28,10 @@ export class EventSuggestionServicesServices {
   updateSuggestionPosition(oldPosition: number, newPosition: number, eventId: number): Observable<void> {
     return this.http.put<void>(`${environment.apiUrl}/event-suggestions/update-positions/${oldPosition}/${newPosition}/${eventId}`, {responseType: "json"});
   }
+
+  getNumberOfEventSuggestionsByUserId(userId: number | any): Observable<number> {
+    return this.http.get<number>(`${environment.apiUrl}/event-suggestions/number-of-event-suggestions-by-user/${userId}`, {responseType: "json"});
+  }
 }
 
 
