@@ -34,8 +34,10 @@ export class EventDetailsComponent implements OnInit {
   eventSuggestionList: IEventSuggestion[] = [];
   user: IUser;
   eventParticipant: IEventParticipant;
+  contributorsMap = new Map<number, IUser>();
 
-  constructor(public dialog: MatDialog, private route: ActivatedRoute,
+  constructor(public dialog: MatDialog,
+              private route: ActivatedRoute,
               private eventService: EventServicesService,
               private snackBar: MatSnackBar,
               private eventSuggestionService: EventSuggestionServicesServices,
@@ -85,7 +87,14 @@ export class EventDetailsComponent implements OnInit {
   getAllEventSuggestionsForEvent(eventId: number) {
     this.eventSuggestionService.getAllEventSuggestionsForEvent(eventId).toPromise().then(data => {
       this.eventSuggestionList = data;
+      this.getAllContributors();
     })
+  }
+
+  getAllContributors() {
+    this.eventSuggestionList.forEach(eventSuggestion => {
+      this.getContributor(eventSuggestion);
+    });
   }
 
   openEventSuggestionDialog() {
@@ -194,5 +203,24 @@ export class EventDetailsComponent implements OnInit {
         });
       }
     }
+  }
+
+  getContributor(eventSuggestion: IEventSuggestion) {
+    if (eventSuggestion.creatorUserId) {
+      this.userService.getUserById(eventSuggestion.creatorUserId).toPromise().then(data => {
+        if (eventSuggestion.id != null) {
+          this.contributorsMap.set(eventSuggestion.id, data);
+        }
+      }, err => {
+        this.openSnackBar(err.error.message, "Close");
+      });
+    }
+  }
+
+  getEventSuggestionID(eventSuggestion: IEventSuggestion) {
+    if (eventSuggestion.id != null) {
+      return eventSuggestion.id;
+    }
+    return -1;
   }
 }

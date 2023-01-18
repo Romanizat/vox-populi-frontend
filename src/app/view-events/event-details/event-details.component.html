@@ -29,8 +29,10 @@
   </div>
   <div class="example-box" *ngFor="let eventSuggestion of eventSuggestionList" cdkDrag>
     <h3 class="song-title">{{eventSuggestion.title}}</h3>
-    <!--    TODO: Get Contributor and add profile pic-->
-    <!--    <h4 class="song-title">Contributed by {{getContributor(eventSuggestion)}}</h4>-->
+    <h4 class="song-title">Contributed by {{contributorsMap.get(getEventSuggestionID(eventSuggestion))?.username}}</h4>
+    <!--TODO: Fix CSS for profile photo and then uncomment block below-->
+    <!--    <img alt="Profile photo"-->
+    <!--         src="{{contributorsMap.get(getEventSuggestionID(eventSuggestion))?.profilePhoto || 'https://avatars.dicebear.com/api/croodles/stefan.svg'}}">-->
     <div class="invite-user">
       <button (click)="vote(eventSuggestion, true)" class="color-secondary add-btn" mat-fab>
         <!--TODO: Implement ngClass-->
