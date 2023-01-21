@@ -24,46 +24,62 @@
   </div>
 </div>
 <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
-  <div class="tip-wrapper">
-    <span class="tip"><span style="color: #FFC947">Rearrange</span> the suggestions</span>
-  </div>
-  <div class="example-box" *ngFor="let eventSuggestion of eventSuggestionList" cdkDrag>
-    <h3 class="song-title">{{eventSuggestion.title}}</h3>
-    <h4 class="song-title">Contributed by {{contributorsMap.get(getEventSuggestionID(eventSuggestion))?.username}}</h4>
-    <!--TODO: Fix CSS for profile photo and then uncomment block below-->
-    <!--    <img alt="Profile photo"-->
-    <!--         src="{{contributorsMap.get(getEventSuggestionID(eventSuggestion))?.profilePhoto || 'https://avatars.dicebear.com/api/croodles/stefan.svg'}}">-->
-    <div class="invite-user">
-      <button (click)="vote(eventSuggestion, true)" class="color-secondary add-btn" mat-fab>
-        <!--TODO: Implement ngClass-->
-        <mat-icon>thumb_up</mat-icon>
-      </button>
-      <div *ngIf="didUserLike(eventSuggestion)">
-        <span>Liked</span>
+
+  <div class="help-wrapper">
+    <div class="tip-wrapper">
+      <span class="tip"><span style="color: #FFC947">Rearrange</span> the suggestions</span>
+    </div>
+
+    <div class="example-box" *ngFor="let eventSuggestion of eventSuggestionList" cdkDrag>
+      <div class="title-wrapper">
+        <h3 class="song-title">{{eventSuggestion.title}}</h3>
+        <h4 class="song-title">Contributed
+          by {{contributorsMap.get(getEventSuggestionID(eventSuggestion))?.username}}</h4>
+        <img alt="Profile photo" class="profile-img"
+             src="{{contributorsMap.get(getEventSuggestionID(eventSuggestion))?.profilePhoto || 'https://avatars.dicebear.com/api/croodles/stefan.svg'}}">
       </div>
-    </div>
-    <!--      TODO: Style, move the number further apart from the button-->
-    <div>
-      {{getNumberOfLikes(eventSuggestion)}}
-    </div>
-    <div class="invite-user">
-      <button (click)="vote(eventSuggestion, false)" class="color-secondary add-btn" mat-fab>
-        <mat-icon>thumb_down</mat-icon>
-      </button>
-      <div *ngIf="didUserDislike(eventSuggestion)">
-        <span>Disliked</span>
+
+      <div class="item-actions">
+        <div class="action">
+          <button [ngClass]="{'liked' : isLiked, '' : isLiked === false}" (click)="vote(eventSuggestion, true)"
+                  class="color-secondary add-btn" mat-fab>
+            <mat-icon>thumb_up</mat-icon>
+          </button>
+          <div *ngIf="didUserLike(eventSuggestion)">
+            <span>Liked</span>
+          </div>
+        </div>
+
+        <div>
+          {{getNumberOfLikes(eventSuggestion)}}
+        </div>
+
+        <div class="action">
+          <button [ngClass]="{'disliked' : isDisliked, '' : isDisliked === false}"
+                  (click)="vote(eventSuggestion, false)"
+                  class="color-secondary add-btn" mat-fab>
+            <mat-icon>thumb_down</mat-icon>
+          </button>
+          <div *ngIf="didUserDislike(eventSuggestion)">
+            <span>Disliked</span>
+          </div>
+        </div>
+
+        <div>
+          {{getNumberOfDislikes(eventSuggestion)}}
+        </div>
+
+        <div class="action" *ngIf="eventParticipant.organizer || eventSuggestion.creatorUserId === user.id">
+          <button (click)="deleteSuggestion(eventSuggestion)" class="color-secondary add-btn" mat-fab>
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+
       </div>
+
+      <div class="yt-hook" [innerHTML]="iframe_start +  eventSuggestion?.url + iframe_end | safe: 'html'"></div>
+
     </div>
-    <!--      TODO: Style, move the number further apart from the button-->
-    <div>
-      {{getNumberOfDislikes(eventSuggestion)}}
-    </div>
-    <div class="invite-user" *ngIf="eventParticipant.organizer || eventSuggestion.creatorUserId === user.id">
-      <button (click)="deleteSuggestion(eventSuggestion)" class="color-secondary add-btn" mat-fab>
-        <mat-icon>delete</mat-icon>
-      </button>
-    </div>
-    <div class="yt-hook" [innerHTML]="iframe_start +  eventSuggestion?.url + iframe_end | safe: 'html'"></div>
   </div>
 </div>
 <div class="no-suggestions" *ngIf="this.eventSuggestionList.length === 0">

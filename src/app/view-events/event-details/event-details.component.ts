@@ -36,6 +36,10 @@ export class EventDetailsComponent implements OnInit {
   eventParticipant: IEventParticipant;
   contributorsMap = new Map<number, IUser>();
 
+  isDisliked = false;
+
+  isLiked = false;
+
   constructor(public dialog: MatDialog,
               private route: ActivatedRoute,
               private eventService: EventServicesService,

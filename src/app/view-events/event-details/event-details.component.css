@@ -14,7 +14,6 @@
   100% {
     transform: translateY(0);
   }
-
 }
 
 .event-info {
@@ -29,6 +28,14 @@
 
 .event-name, .event-location {
   color: #FFC947;
+}
+
+.disliked {
+  background: #ec3535 !important;
+}
+
+.liked {
+  background: #2ac82a !important;
 }
 
 h2:first-child {
@@ -51,7 +58,7 @@ h2:nth-child(3) {
   margin: 1rem 0;
 }
 
-.example-list {
+.help-wrapper {
   width: 75%;
   margin: 1rem auto 2rem;
   box-shadow: 20px 20px 0 0 black;
@@ -77,9 +84,14 @@ h2:nth-child(3) {
   transition: 250ms ease-in-out;
 }
 
-.example-list:hover {
+.example-list {
+  padding-bottom: 4rem;
+  margin-bottom: 4rem;
+}
+
+.example-list:hover > .help-wrapper {
   box-shadow: 20px -100px 0 0 black;
-  top: 10%;
+  top: 7rem;
   transition: 250ms ease-in-out;
 }
 
@@ -122,8 +134,36 @@ h2:nth-child(3) {
   margin: 1rem 0;
 }
 
-.song-title {
-  width: 40%;
+.title-wrapper {
+  width: 33%;
+}
+
+.title-wrapper > h4 {
+  margin-bottom: 0;
+}
+
+.profile-img {
+  width: 3rem;
+  height: 3rem;
+  padding: 0.5rem 0;
+}
+
+.item-actions {
+  width: 33%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+  margin: 1rem 0;
 }
 
 .invite-user {
